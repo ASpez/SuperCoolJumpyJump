@@ -116,6 +116,13 @@ margin_left = -241.0
 margin_top = -20.5
 margin_right = 241.0
 margin_bottom = 20.5
+rect_pivot_offset = Vector2( 241, 20 )
+max_length = 25
+clear_button_enabled = true
+placeholder_text = "Enter name here"
+placeholder_alpha = 0.3
+caret_blink = true
+caret_blink_speed = 0.4
 __meta__ = {
 "_edit_use_anchors_": false
 }

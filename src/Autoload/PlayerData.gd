@@ -9,20 +9,14 @@ signal level_updated
 var score: = 0 setget set_score
 var deaths: = 0 setget set_deaths
 var level: = 1 setget set_level
-var is_teleporting: bool = false setget set_teleporting
 
-const VERSION = "v0.0.33"
+const VERSION = "v0.0.34"
 
 
 func reset() -> void:
 	score = 0
 	deaths = 0
 	level = 1
-	is_teleporting = false
-	
-
-func set_teleporting( value: bool) -> void:
-	is_teleporting = value
 	
 	
 func set_level(value: int) -> void:

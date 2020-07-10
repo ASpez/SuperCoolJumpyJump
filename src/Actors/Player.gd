@@ -9,7 +9,8 @@ onready var player_died_anim: AnimationPlayer = $PlayerDied
 export var stomp_impulse: = 1500.0
 
 var is_dying: bool = false
-var has_shield: bool
+var has_shield: bool = true
+var is_teleporting = false
 
 
 func _ready() -> void:
@@ -24,7 +25,7 @@ func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
 func _on_EnemyDetector_body_entered(_body: Node) -> void:
 	if $HitTimer.is_stopped() == false:
 		return
-	if is_dying == false and PlayerData.is_teleporting == false and has_shield == false:
+	if is_dying == false and is_teleporting == false and has_shield == false:
 		is_dying = true
 		player_died_anim.play("Zoom")
 		snd_player.play()
@@ -43,9 +44,9 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if PlayerData.is_teleporting == true:
+	if is_teleporting == true:
 		get_node("Particles2D").emitting = true
-	if PlayerData.is_teleporting == false and is_dying == false:
+	if is_teleporting == false and is_dying == false:
 		var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 		var direction: = get_direction()
 		_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)

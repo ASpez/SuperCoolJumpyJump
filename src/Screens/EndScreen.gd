@@ -1,7 +1,7 @@
 extends Control
 
 
-const PERFECT_SCORE: = 25100
+const PERFECT_SCORE: = 25500
 
 onready var label: Label = get_node("Label")
 onready var PerfectScore: Label = get_node("PerfectGame")
