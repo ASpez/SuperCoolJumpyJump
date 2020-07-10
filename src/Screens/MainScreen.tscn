@@ -1,0 +1,242 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/background.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Title Screen.wav" type="AudioStream" id=6]
+[ext_resource path="res://src/Screens/MainScreen.gd" type="Script" id=7]
+[ext_resource path="res://src/UserInterface/InfoButton.gd" type="Script" id=8]
+[ext_resource path="res://assets/flare_01_0.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.4, 0.4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Title:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5 ),
+"transitions": PoolRealArray( 2, 2, 2, 2, 2, 0.5, 0.5, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.921569, 0.294118, 0.105882, 1 ), Color( 0.862745, 0.815686, 0.109804, 1 ), Color( 0.317647, 0.886275, 0.113725, 1 ), Color( 0.0980392, 0.603922, 0.85098, 1 ), Color( 0.843137, 0.0196078, 0.960784, 1 ), Color( 0.0980392, 0.603922, 0.85098, 1 ), Color( 0.317647, 0.886275, 0.113725, 1 ), Color( 0.862745, 0.815686, 0.109804, 1 ), Color( 0.921569, 0.294118, 0.105882, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Title:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.245399, 0.460123, 0.754601, 1 )
+colors = PoolColorArray( 1, 0.897293, 0.0078125, 1, 0.049839, 0.850586, 0.404858, 1, 0.2458, 0.686532, 0.898926, 1, 0.995117, 0.985855, 0.0466461, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 4500, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 5, 30, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "ButtonFlip"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Menu/PlayButton:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Menu/InfoButton:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Menu/QuitButton:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="MainScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 1920.0 ]
+}
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" parent="." instance=ExtResource( 2 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -299.0
+margin_top = -161.0
+margin_right = 301.0
+margin_bottom = -101.0
+rect_pivot_offset = Vector2( 300, 30 )
+size_flags_vertical = 1
+text = "Super Cool Jumpy Jump"
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.416406
+anchor_top = 0.439352
+anchor_right = 0.583594
+anchor_bottom = 0.560648
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" parent="Menu" instance=ExtResource( 1 )]
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 160, 20 )
+mouse_filter = 1
+next_scene_path = "res://src/Levels/Level01.tscn"
+
+[node name="InfoButton" type="Button" parent="Menu"]
+margin_top = 44.0
+margin_right = 321.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( 160, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Info"
+script = ExtResource( 8 )
+next_scene_path = "res://src/Screens/InfoScreen.tscn"
+
+[node name="QuitButton" parent="Menu" instance=ExtResource( 3 )]
+margin_top = 88.0
+margin_bottom = 130.0
+rect_pivot_offset = Vector2( 160, 21 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
+
+[node name="Version" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -46.0
+margin_right = 435.0
+text = "VER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Usage" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -402.0
+margin_top = -209.0
+margin_right = -6.0
+margin_bottom = -8.0
+theme = ExtResource( 5 )
+text = "Move : WASD/arrow keys
+Jump : Space/up arrow
+Music Volume : +/-
+SFX Volume : PgUp/PgDn
+Mute : M (Music, SFX, On)
+Pause/reset : ESC"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleAnimation" type="AnimationPlayer" parent="."]
+autoplay = "Zoom"
+anims/Zoom = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 960, 0 )
+scale = Vector2( 0.25, 0.25 )
+amount = 100
+lifetime = 20.0
+preprocess = 20.0
+speed_scale = 3.0
+process_material = SubResource( 4 )
+texture = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="TimerButtonFlip" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="ButtonAnimation" type="AnimationPlayer" parent="."]
+anims/ButtonFlip = SubResource( 5 )
+[connection signal="mouse_entered" from="Menu/PlayButton" to="Menu/PlayButton" method="_on_PlayButton_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/PlayButton" to="Menu/PlayButton" method="_on_PlayButton_mouse_exited"]
+[connection signal="button_up" from="Menu/InfoButton" to="Menu/InfoButton" method="_on_InfoButton_button_up"]
+[connection signal="mouse_entered" from="Menu/InfoButton" to="Menu/InfoButton" method="_on_InfoButton_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/InfoButton" to="Menu/InfoButton" method="_on_InfoButton_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/QuitButton" to="Menu/QuitButton" method="_on_QuitButton_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/QuitButton" to="Menu/QuitButton" method="_on_QuitButton_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="TimerButtonFlip" to="." method="_on_TimerButtonFlip_timeout"]

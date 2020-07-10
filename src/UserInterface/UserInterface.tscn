@@ -1,0 +1,229 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=4]
+[ext_resource path="res://src/UserInterface/RetryButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UserInterface/UserInterface.gd" type="Script" id=6]
+[ext_resource path="res://assets/gui_bar.png" type="Texture" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.768627, 1, 0.054902, 1 )
+
+[node name="UserInterface" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -189.0
+margin_top = 38.0
+margin_right = -67.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 61, 16 )
+text = "Score: %s"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1891.0
+margin_top = 38.0
+margin_right = -1771.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 60, 16 )
+text = "Level: %s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.235294 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" parent="PauseOverlay" instance=ExtResource( 2 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -75.0
+margin_bottom = -18.0
+text = "Paused"
+
+[node name="PauseMenu" type="VBoxContainer" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -183.0
+margin_top = -18.0
+margin_right = 183.0
+margin_bottom = 212.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RetryButton" parent="PauseOverlay/PauseMenu" instance=ExtResource( 5 )]
+margin_right = 366.0
+margin_bottom = 74.0
+rect_pivot_offset = Vector2( 183, 37 )
+
+[node name="ChangeSceneButton" parent="PauseOverlay/PauseMenu" instance=ExtResource( 3 )]
+margin_top = 78.0
+margin_right = 366.0
+margin_bottom = 152.0
+rect_pivot_offset = Vector2( 183, 37 )
+text = "Main Screen"
+next_scene_path = "res://src/Screens/MainScreen.tscn"
+
+[node name="QuitButton" parent="PauseOverlay/PauseMenu" instance=ExtResource( 1 )]
+margin_top = 156.0
+margin_right = 366.0
+margin_bottom = 230.0
+rect_pivot_offset = Vector2( 183, 37 )
+
+[node name="VolumeBar" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1604, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1624, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1644, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1664, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1684, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite6" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1704, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite7" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1724, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite8" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1744, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite9" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1764, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="Sprite10" type="Sprite" parent="VolumeBar"]
+visible = false
+position = Vector2( 1784, 137 )
+scale = Vector2( 1.92857, 1.82 )
+texture = ExtResource( 7 )
+
+[node name="MusicVolume" type="ProgressBar" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = -18.0
+margin_right = 92.0
+margin_bottom = -2.0
+rect_pivot_offset = Vector2( 91, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_styles/fg = SubResource( 1 )
+min_value = -51.0
+max_value = 6.0
+step = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MusicVolume"]
+margin_top = -24.5
+margin_right = 181.0
+margin_bottom = 6.5
+text = "Music Volume"
+
+[node name="EffectsVolume" type="ProgressBar" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = 35.0
+margin_right = 106.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 98, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_styles/fg = SubResource( 1 )
+min_value = -39.0
+max_value = 21.0
+step = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EffectsVolume"]
+margin_top = -24.5
+margin_right = 181.0
+margin_bottom = 6.5
+text = "Effects Volume"
+
+[node name="MusicTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EffectsTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="mouse_entered" from="PauseOverlay/PauseMenu/RetryButton" to="PauseOverlay/PauseMenu/RetryButton" method="_on_RetryButton_mouse_entered"]
+[connection signal="mouse_exited" from="PauseOverlay/PauseMenu/RetryButton" to="PauseOverlay/PauseMenu/RetryButton" method="_on_RetryButton_mouse_exited"]
+[connection signal="mouse_entered" from="PauseOverlay/PauseMenu/ChangeSceneButton" to="PauseOverlay/PauseMenu/ChangeSceneButton" method="_on_ChangeSceneButton_mouse_entered"]
+[connection signal="mouse_exited" from="PauseOverlay/PauseMenu/ChangeSceneButton" to="PauseOverlay/PauseMenu/ChangeSceneButton" method="_on_ChangeSceneButton_mouse_exited"]
+[connection signal="mouse_entered" from="PauseOverlay/PauseMenu/QuitButton" to="PauseOverlay/PauseMenu/QuitButton" method="_on_QuitButton_mouse_entered"]
+[connection signal="mouse_exited" from="PauseOverlay/PauseMenu/QuitButton" to="PauseOverlay/PauseMenu/QuitButton" method="_on_QuitButton_mouse_exited"]
+[connection signal="timeout" from="MusicTimer" to="." method="_on_MusicTimer_timeout"]
+[connection signal="timeout" from="EffectsTimer" to="." method="_on_EffectsTimer_timeout"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/portal.png" type="Texture" id=1]
+[ext_resource path="res://src/Objects/Portal2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/sfx/portal.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/Particle.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 71.0
+height = 66.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "START"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TransitionLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TransitionLayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TransitionLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TransitionLayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 128.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 0.49
+angular_velocity = 93.91
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 4.35
+color = Color( 0.984314, 0.984314, 0.0588235, 1 )
+hue_variation = 0.41
+hue_variation_random = 0.77
+
+[node name="Portal2D" type="Area2D"]
+monitorable = false
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="portal" type="Sprite" parent="."]
+position = Vector2( 0, -121 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -121 )
+shape = SubResource( 1 )
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 3840.0
+margin_bottom = 1080.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "START"
+anims/START = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
+
+[node name="PortalSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "Effects"
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -121 )
+scale = Vector2( 0.5, 0.5 )
+amount = 50
+lifetime = 2.0
+speed_scale = 0.75
+explosiveness = 0.75
+visibility_rect = Rect2( -100, -100, 100, 100 )
+draw_order = 1
+process_material = SubResource( 4 )
+texture = ExtResource( 4 )
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
