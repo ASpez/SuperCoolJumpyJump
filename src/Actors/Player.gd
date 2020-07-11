@@ -12,13 +12,14 @@ var is_dying: bool = false
 var has_shield: bool = false
 var is_teleporting = false
 
-onready var settings = load("res://src/Screens/Settings.gd").new()
-
 
 func _ready() -> void:
-	if settings.option_enable_shields:
+	if PlayerData.option_enable_shields:
 		$shield.visible = true
 		has_shield = true
+	else:
+		$shield.visible = false
+		has_shield = false
 	
 	
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
@@ -26,7 +27,7 @@ func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
 
 
 func _on_EnemyDetector_body_entered(_body: Node) -> void:
-	if settings.option_god_mode:
+	if PlayerData.option_god_mode:
 		return
 		
 	if $HitTimer.is_stopped() == false:
@@ -50,8 +51,8 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if is_teleporting and settings.option_enable_particles:
-		get_node("Particles2D").emitting = true
+	if is_teleporting and PlayerData.option_enable_particles:
+		$Particles2D.emitting = true
 	if is_teleporting == false and is_dying == false:
 		var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 		var direction: = get_direction()

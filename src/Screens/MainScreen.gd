@@ -2,6 +2,7 @@ extends Control
 
 
 onready var bus_music: = AudioServer.get_bus_index("Music")
+onready var bus_master: = AudioServer.get_bus_index("Master")
 onready var anim_title: AnimationPlayer = $TitleAnimation
 onready var busdb_music = -21.0
 
@@ -14,12 +15,21 @@ var _movePB: bool = true
 var _moveIB: bool = true
 var _moveQB: bool = true
 
+
 func _ready() -> void:
+	PlayerData.load_settings()
 	OS.center_window()
 	rng.randomize()
 	$Version.text = "Version: %s" % PlayerData.VERSION
 	AudioServer.set_bus_volume_db(bus_music, busdb_music)
 	
+	if PlayerData.option_enable_audio:
+		AudioServer.set_bus_mute(bus_master, false)
+	else:
+		AudioServer.set_bus_mute(bus_master, true)
+		
+	if not PlayerData.option_enable_particles:
+		$Particles2D.emitting = false
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("volup"):

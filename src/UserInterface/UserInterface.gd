@@ -10,7 +10,6 @@ onready var bus_music: = AudioServer.get_bus_index("Music")
 onready var bus_effects: = AudioServer.get_bus_index("Effects")
 onready var bus_master: = AudioServer.get_bus_index("Master")
 
-onready var settings = load("res://src/Screens/Settings.gd").new()
 
 var paused: = false setget set_paused
 var busdb_music
@@ -26,8 +25,9 @@ func _ready() -> void:
 	$EffectsVolume.value = AudioServer.get_bus_volume_db(bus_effects)
 	update_interface()
 	
-	if not settings.option_enable_audio:
+	if not PlayerData.option_enable_audio:
 		set_audio_mute("All", true)
+
 
 func set_audio_mute(audio_type: String, _mute: bool) -> void:
 	match audio_type:

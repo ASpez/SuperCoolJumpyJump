@@ -43,8 +43,9 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
-	$Particles2D.visible = true
-	$Particles2D.emitting = true
+	if PlayerData.option_enable_particles:
+		$Particles2D.visible = true
+		$Particles2D.emitting = true
 	
 	PlayerData.score += self.score
 	snd_player.play()

@@ -7,11 +7,9 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 export var next_scene: PackedScene
 
-onready var settings = load("res://src/Screens/Settings.gd").new()
-
 
 func _ready() -> void:
-	if not settings.option_enable_particles:
+	if not PlayerData.option_enable_particles:
 		$Particles2D.emitting = false
 
 

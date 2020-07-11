@@ -1,7 +1,6 @@
 extends "res://src/Actors/Actor.gd"
 
 
-onready var settings = load("res://src/Screens/Settings.gd").new()
 onready var snd_player: AudioStreamPlayer2D = $EnemyDeathSound
 export var score: = 100
 
@@ -43,7 +42,7 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
-	if settings.option_enable_particles:
+	if PlayerData.option_enable_particles:
 		$Particles2D.visible = true
 		$Particles2D.emitting = true
 	
