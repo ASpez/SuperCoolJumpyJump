@@ -7,6 +7,13 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 export var next_scene: PackedScene
 
+onready var settings = load("res://src/Screens/Settings.gd").new()
+
+
+func _ready() -> void:
+	if not settings.option_enable_particles:
+		$Particles2D.emitting = false
+
 
 func _on_body_entered(_body: Node) -> void:
 	if pd.is_teleporting == false:

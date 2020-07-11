@@ -63,6 +63,7 @@ position = Vector2( 0, -48 )
 texture = ExtResource( 1 )
 
 [node name="shield" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -49 )
 texture = ExtResource( 5 )
 

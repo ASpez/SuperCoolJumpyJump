@@ -10,6 +10,8 @@ onready var bus_music: = AudioServer.get_bus_index("Music")
 onready var bus_effects: = AudioServer.get_bus_index("Effects")
 onready var bus_master: = AudioServer.get_bus_index("Master")
 
+onready var settings = load("res://src/Screens/Settings.gd").new()
+
 var paused: = false setget set_paused
 var busdb_music
 var busdb_effects
@@ -24,6 +26,18 @@ func _ready() -> void:
 	$EffectsVolume.value = AudioServer.get_bus_volume_db(bus_effects)
 	update_interface()
 	
+	if not settings.option_enable_audio:
+		set_audio_mute("All", true)
+
+func set_audio_mute(audio_type: String, _mute: bool) -> void:
+	match audio_type:
+		"Music", "All":
+			AudioServer.set_bus_mute(bus_music, _mute)
+			continue
+		"Effects", "All":
+			AudioServer.set_bus_mute(bus_effects, _mute)
+
+
 
 func _on_PlayerData_player_died() -> void:
 	self.paused = true
@@ -34,8 +48,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and pause_title.text != "You died!":
 		self.paused = not paused
 		scene_tree.set_input_as_handled()
-		
-		
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("volup"):
 		busdb_music = AudioServer.get_bus_volume_db(bus_music) + 3.0
@@ -44,8 +58,7 @@ func _input(event: InputEvent) -> void:
 		AudioServer.set_bus_volume_db(bus_music, busdb_music)
 		$MusicVolume.value = busdb_music
 		show_music_vol_meter()
-			
-			
+
 	if event.is_action_pressed("voldown"):
 		busdb_music = AudioServer.get_bus_volume_db(bus_music) - 3.0
 		if busdb_music < -51.0:
@@ -53,19 +66,19 @@ func _input(event: InputEvent) -> void:
 		AudioServer.set_bus_volume_db(bus_music, busdb_music)
 		$MusicVolume.value = busdb_music
 		show_music_vol_meter()
-		
+
 	if event.is_action_pressed("volup_sfx"):
 		busdb_effects = AudioServer.get_bus_volume_db(bus_effects) + 3.0
 		AudioServer.set_bus_volume_db(bus_effects, busdb_effects)
 		$EffectsVolume.value = busdb_effects
 		show_effects_vol_meter()
-			
+
 	if event.is_action_pressed("voldown_sfx"):
 		busdb_effects = AudioServer.get_bus_volume_db(bus_effects) - 3.0
 		AudioServer.set_bus_volume_db(bus_effects, busdb_effects)
 		$EffectsVolume.value = busdb_effects
 		show_effects_vol_meter()
-		
+
 	if event.is_action_pressed("mute_audio"):
 		mute_level = mute_level % 3
 		match mute_level:
