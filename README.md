@@ -9,7 +9,7 @@ You can watch it here: https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ
 
 # Things to work on
 - [x] Highscore save file
-- [ ] Settings screen
+- [x] Settings screen
 - [ ] GUI volume controls
 - [ ] Power-ups
 - [ ] More Effects
