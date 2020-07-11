@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/UserInterface/InfoButton.gd" type="Script" id=8]
 [ext_resource path="res://assets/flare_01_0.png" type="Texture" id=9]
 [ext_resource path="res://src/Screens/SettingsButton.gd" type="Script" id=10]
+[ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 length = 5.0
@@ -120,6 +121,12 @@ __meta__ = {
 "_edit_vertical_guides_": [ 1920.0 ]
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="UserInterface" parent="CanvasLayer" instance=ExtResource( 11 )]
+margin_bottom = -963.0
+
 [node name="background" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -146,20 +153,24 @@ anchor_left = 0.416406
 anchor_top = 0.439352
 anchor_right = 0.583594
 anchor_bottom = 0.560648
+margin_left = -0.499512
+margin_top = 0.499847
+margin_right = -0.500488
+margin_bottom = 110.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayButton" parent="Menu" instance=ExtResource( 1 )]
-margin_bottom = 37.0
+margin_bottom = 57.0
 rect_pivot_offset = Vector2( 160, 20 )
 mouse_filter = 1
 next_scene_path = "res://src/Levels/Level01.tscn"
 
 [node name="InfoButton" type="Button" parent="Menu"]
-margin_top = 41.0
+margin_top = 61.0
 margin_right = 321.0
-margin_bottom = 78.0
+margin_bottom = 118.0
 rect_pivot_offset = Vector2( 160, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -168,17 +179,19 @@ script = ExtResource( 8 )
 next_scene_path = "res://src/Screens/InfoScreen.tscn"
 
 [node name="SettingsButton" type="Button" parent="Menu"]
-margin_top = 82.0
+margin_top = 122.0
 margin_right = 321.0
-margin_bottom = 119.0
+margin_bottom = 179.0
 rect_pivot_offset = Vector2( 160, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Settings"
 script = ExtResource( 10 )
 next_scene_path = "res://src/Screens/Settings.tscn"
 
 [node name="QuitButton" parent="Menu" instance=ExtResource( 3 )]
-margin_top = 123.0
-margin_bottom = 160.0
+margin_top = 183.0
+margin_bottom = 241.0
 rect_pivot_offset = Vector2( 160, 21 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

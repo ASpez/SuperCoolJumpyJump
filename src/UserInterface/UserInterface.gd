@@ -127,3 +127,71 @@ func _on_MusicTimer_timeout() -> void:
 
 func _on_EffectsTimer_timeout() -> void:
 	$EffectsVolume.visible = false
+
+
+func _on_MusicOnButton_button_up() -> void:
+	$MusicOnButton.visible = false
+	$MusicOffButton.visible = true
+	set_audio_mute("Music", true)
+
+
+func _on_MusicOffButton_button_up() -> void:
+	$MusicOnButton.visible = true
+	$MusicOffButton.visible = false
+	set_audio_mute("Music", false)
+
+
+func _on_SFXOnButton_button_up() -> void:
+	$SFXOnButton.visible = false
+	$SFXOffButton.visible = true
+	set_audio_mute("Effects", true)
+
+
+func _on_SFXOffButton_button_up() -> void:
+	$SFXOnButton.visible = true
+	$SFXOffButton.visible = false
+	set_audio_mute("Effects", false)
+
+
+func _on_SettingsButton_button_up() -> void:
+	pass # Replace with function body.
+
+
+func _on_MusicOnButton_mouse_entered() -> void:
+	$MusicOnButton.modulate = Color("#8d98b2")
+	
+
+func _on_MusicOnButton_mouse_exited() -> void:
+	$MusicOnButton.modulate = Color("#288d98b2")
+
+
+func _on_MusicOffButton_mouse_entered() -> void:
+	$MusicOffButton.modulate = Color("#8d98b2")
+
+
+func _on_MusicOffButton_mouse_exited() -> void:
+	$MusicOffButton.modulate = Color("#288d98b2")
+
+
+func _on_SFXOnButton_mouse_entered() -> void:
+	$SFXOnButton.modulate = Color("#8d98b2")
+
+
+func _on_SFXOffButton_mouse_entered() -> void:
+	$SFXOffButton.modulate = Color("#8d98b2")
+
+
+func _on_SFXOnButton_mouse_exited() -> void:
+	$SFXOnButton.modulate = Color("#288d98b2")
+
+
+func _on_SFXOffButton_mouse_exited() -> void:
+	$SFXOffButton.modulate = Color("#288d98b2")
+
+
+func _on_SettingsButton_mouse_entered() -> void:
+	$SettingsButton.modulate = Color("#8d98b2")
+
+
+func _on_SettingsButton_mouse_exited() -> void:
+	$SettingsButton.modulate = Color("#288d98b2")

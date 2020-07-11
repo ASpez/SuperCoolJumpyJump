@@ -22,6 +22,8 @@ func _ready() -> void:
 	rng.randomize()
 	$Version.text = "Version: %s" % PlayerData.VERSION
 	AudioServer.set_bus_volume_db(bus_music, busdb_music)
+	$CanvasLayer/UserInterface/Level.visible = false
+	$CanvasLayer/UserInterface/Score.visible = false
 	
 	if PlayerData.option_enable_audio:
 		AudioServer.set_bus_mute(bus_master, false)

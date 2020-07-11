@@ -47,7 +47,7 @@ tracks/0/keys = {
 }
 
 [node name="Boss" type="KinematicBody2D"]
-scale = Vector2( 0.78, 0.78 )
+scale = Vector2( 3.5, 3.5 )
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 2 )

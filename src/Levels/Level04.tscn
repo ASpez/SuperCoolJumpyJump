@@ -194,6 +194,7 @@ speed = Vector2( 250, 1000 )
 
 [node name="Boss" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 9749.42, 836.818 )
+scale = Vector2( 3.5, 3.5 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
