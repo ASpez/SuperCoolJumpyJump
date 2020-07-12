@@ -13,8 +13,7 @@ func _on_button_up() -> void:
 	main_scene.modulate = Color("#ffffff")
 	
 	get_tree().paused = false
-	
-	var sto = 7
+
 
 func _on_BackButton_mouse_entered() -> void:
 	rect_scale.x = 1.1
