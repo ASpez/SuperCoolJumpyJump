@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/black_soundOff.png" type="Texture" id=10]
 [ext_resource path="res://assets/black_MusicOff.png" type="Texture" id=11]
 [ext_resource path="res://assets/black_soundOn.png" type="Texture" id=12]
+[ext_resource path="res://src/Screens/Settings.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/UserInterface/UserInterfaceSettingsButton.gd" type="Script" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.768627, 1, 0.054902, 1 )
@@ -226,7 +228,7 @@ one_shot = true
 one_shot = true
 
 [node name="MusicOnButton" type="TextureButton" parent="."]
-modulate = Color( 0.552941, 0.596078, 0.698039, 0.156863 )
+modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1558.96
 margin_top = 25.6529
 margin_right = 1658.96
@@ -242,7 +244,7 @@ __meta__ = {
 
 [node name="MusicOffButton" type="TextureButton" parent="."]
 visible = false
-modulate = Color( 0.552941, 0.596078, 0.698039, 0.156863 )
+modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1558.96
 margin_top = 25.6529
 margin_right = 1658.96
@@ -253,7 +255,7 @@ size_flags_vertical = 0
 texture_normal = ExtResource( 11 )
 
 [node name="SFXOnButton" type="TextureButton" parent="."]
-modulate = Color( 0.552941, 0.596078, 0.698039, 0.156863 )
+modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1617.25
 margin_top = 25.6529
 margin_right = 1717.25
@@ -266,7 +268,7 @@ texture_normal = ExtResource( 12 )
 
 [node name="SFXOffButton" type="TextureButton" parent="."]
 visible = false
-modulate = Color( 0.552941, 0.596078, 0.698039, 0.156863 )
+modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1617.25
 margin_top = 25.6529
 margin_right = 1717.25
@@ -278,7 +280,7 @@ toggle_mode = true
 texture_normal = ExtResource( 10 )
 
 [node name="SettingsButton" type="TextureButton" parent="."]
-modulate = Color( 0.552941, 0.596078, 0.698039, 0.156863 )
+modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1677.25
 margin_top = 25.6529
 margin_right = 1777.25
@@ -287,6 +289,13 @@ rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture_normal = ExtResource( 9 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" parent="." instance=ExtResource( 13 )]
+visible = false
 [connection signal="mouse_entered" from="PauseOverlay/PauseMenu/RetryButton" to="PauseOverlay/PauseMenu/RetryButton" method="_on_RetryButton_mouse_entered"]
 [connection signal="mouse_exited" from="PauseOverlay/PauseMenu/RetryButton" to="PauseOverlay/PauseMenu/RetryButton" method="_on_RetryButton_mouse_exited"]
 [connection signal="mouse_entered" from="PauseOverlay/PauseMenu/ChangeSceneButton" to="PauseOverlay/PauseMenu/ChangeSceneButton" method="_on_ChangeSceneButton_mouse_entered"]
@@ -307,6 +316,6 @@ texture_normal = ExtResource( 9 )
 [connection signal="button_up" from="SFXOffButton" to="." method="_on_SFXOffButton_button_up"]
 [connection signal="mouse_entered" from="SFXOffButton" to="." method="_on_SFXOffButton_mouse_entered"]
 [connection signal="mouse_exited" from="SFXOffButton" to="." method="_on_SFXOffButton_mouse_exited"]
-[connection signal="button_up" from="SettingsButton" to="." method="_on_SettingsButton_button_up"]
+[connection signal="button_up" from="SettingsButton" to="SettingsButton" method="_on_SettingsButton_button_up"]
 [connection signal="mouse_entered" from="SettingsButton" to="." method="_on_SettingsButton_mouse_entered"]
 [connection signal="mouse_exited" from="SettingsButton" to="." method="_on_SettingsButton_mouse_exited"]

@@ -110,6 +110,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Menu/SettingsButton:rect_rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
@@ -121,11 +133,10 @@ __meta__ = {
 "_edit_vertical_guides_": [ 1920.0 ]
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 101
+[node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="UserInterface" parent="CanvasLayer" instance=ExtResource( 11 )]
-margin_bottom = -963.0
+[node name="UserInterface" parent="UserInterface" instance=ExtResource( 11 )]
+margin_bottom = -1080.0
 
 [node name="background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -163,7 +174,7 @@ __meta__ = {
 
 [node name="PlayButton" parent="Menu" instance=ExtResource( 1 )]
 margin_bottom = 57.0
-rect_pivot_offset = Vector2( 160, 20 )
+rect_pivot_offset = Vector2( 160, 28 )
 mouse_filter = 1
 next_scene_path = "res://src/Levels/Level01.tscn"
 
@@ -171,7 +182,7 @@ next_scene_path = "res://src/Levels/Level01.tscn"
 margin_top = 61.0
 margin_right = 321.0
 margin_bottom = 118.0
-rect_pivot_offset = Vector2( 160, 20 )
+rect_pivot_offset = Vector2( 160, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Info"
@@ -182,17 +193,16 @@ next_scene_path = "res://src/Screens/InfoScreen.tscn"
 margin_top = 122.0
 margin_right = 321.0
 margin_bottom = 179.0
-rect_pivot_offset = Vector2( 160, 20 )
+rect_pivot_offset = Vector2( 160, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Settings"
 script = ExtResource( 10 )
-next_scene_path = "res://src/Screens/Settings.tscn"
 
 [node name="QuitButton" parent="Menu" instance=ExtResource( 3 )]
 margin_top = 183.0
-margin_bottom = 241.0
-rect_pivot_offset = Vector2( 160, 21 )
+margin_bottom = 240.0
+rect_pivot_offset = Vector2( 160, 28 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

@@ -13,15 +13,7 @@ var has_shield: bool = false
 var is_teleporting = false
 
 
-func _ready() -> void:
-	if PlayerData.option_enable_shields:
-		$shield.visible = true
-		has_shield = true
-	else:
-		$shield.visible = false
-		has_shield = false
-	
-	
+
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
@@ -48,6 +40,16 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		yield($HitTimer,"timeout")
 		has_shield = false
 		self.visible = true
+
+
+func _process(delta: float) -> void:
+	if PlayerData.option_enable_shields:
+		$shield.visible = true
+		has_shield = true
+	else:
+		$shield.visible = false
+		has_shield = false
+
 
 
 func _physics_process(_delta: float) -> void:

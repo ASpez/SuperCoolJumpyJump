@@ -29,6 +29,13 @@ func _ready() -> void:
 		set_audio_mute("All", true)
 
 
+func _process(delta: float) -> void:
+	if not PlayerData.option_enable_audio:
+		set_audio_mute("All", true)
+		
+	if PlayerData.option_enable_audio and $MusicOnButton.visible == true and $SFXOnButton.visible == true:
+		set_audio_mute("All", false)
+		
 func set_audio_mute(audio_type: String, _mute: bool) -> void:
 	match audio_type:
 		"Music", "All":
@@ -162,7 +169,7 @@ func _on_MusicOnButton_mouse_entered() -> void:
 	
 
 func _on_MusicOnButton_mouse_exited() -> void:
-	$MusicOnButton.modulate = Color("#288d98b2")
+	$MusicOnButton.modulate = Color("#648d98b2")
 
 
 func _on_MusicOffButton_mouse_entered() -> void:
@@ -170,7 +177,7 @@ func _on_MusicOffButton_mouse_entered() -> void:
 
 
 func _on_MusicOffButton_mouse_exited() -> void:
-	$MusicOffButton.modulate = Color("#288d98b2")
+	$MusicOffButton.modulate = Color("#648d98b2")
 
 
 func _on_SFXOnButton_mouse_entered() -> void:
@@ -182,11 +189,11 @@ func _on_SFXOffButton_mouse_entered() -> void:
 
 
 func _on_SFXOnButton_mouse_exited() -> void:
-	$SFXOnButton.modulate = Color("#288d98b2")
+	$SFXOnButton.modulate = Color("#648d98b2")
 
 
 func _on_SFXOffButton_mouse_exited() -> void:
-	$SFXOffButton.modulate = Color("#288d98b2")
+	$SFXOffButton.modulate = Color("#648d98b2")
 
 
 func _on_SettingsButton_mouse_entered() -> void:
@@ -194,4 +201,4 @@ func _on_SettingsButton_mouse_entered() -> void:
 
 
 func _on_SettingsButton_mouse_exited() -> void:
-	$SettingsButton.modulate = Color("#288d98b2")
+	$SettingsButton.modulate = Color("#648d98b2")

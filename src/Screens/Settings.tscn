@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Ending.wav" type="AudioStream" id=1]
+[ext_resource path="res://src/UserInterface/SettingsBackButton.gd" type="Script" id=1]
 [ext_resource path="res://src/Screens/Settings.gd" type="Script" id=2]
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=5]
-[ext_resource path="res://src/UserInterface/BackButton.gd" type="Script" id=6]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -16,55 +14,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 3.77552
-margin_bottom = 3.77551
-theme = ExtResource( 5 )
-texture = ExtResource( 4 )
-expand = true
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -164.0
+margin_top = -126.0
+margin_right = 164.0
+margin_bottom = 126.0
+rect_pivot_offset = Vector2( 164, 126 )
+color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="BackButton" parent="." instance=ExtResource( 3 )]
-margin_left = 1701.0
-margin_top = 976.0
-margin_right = 1861.0
-margin_bottom = 1042.0
-rect_pivot_offset = Vector2( 80, 33 )
-text = "Back"
-script = ExtResource( 6 )
-next_scene_path = "res://src/Screens/MainScreen.tscn"
-
-[node name="SaveButton" type="Button" parent="."]
-margin_left = 135.0
-margin_top = 976.0
-margin_right = 295.0
-margin_bottom = 1042.0
-rect_pivot_offset = Vector2( 80, 33 )
-text = "Save"
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -42.824
-autoplay = true
-bus = "Music"
 
 [node name="Options" type="VBoxContainer" parent="."]
-margin_left = 135.0
-margin_top = 262.479
-margin_right = 452.0
-margin_bottom = 430.479
-rect_scale = Vector2( 2.5, 2.5 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -159.0
+margin_top = -122.0
+margin_right = 159.0
+margin_bottom = 122.0
+rect_pivot_offset = Vector2( 159, 122 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="Options"]
+margin_right = 318.0
+margin_bottom = 31.0
+text = "Game Options"
+
 [node name="Option_God_mode" type="CheckBox" parent="Options"]
+margin_top = 35.0
 margin_right = 155.0
-margin_bottom = 39.0
+margin_bottom = 74.0
 rect_pivot_offset = Vector2( 78, 20 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -75,9 +62,9 @@ __meta__ = {
 }
 
 [node name="Option_enable_shields" type="CheckBox" parent="Options"]
-margin_top = 43.0
+margin_top = 78.0
 margin_right = 215.0
-margin_bottom = 82.0
+margin_bottom = 117.0
 rect_pivot_offset = Vector2( 108, 20 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -89,9 +76,9 @@ __meta__ = {
 }
 
 [node name="Option_enable_audio" type="CheckBox" parent="Options"]
-margin_top = 86.0
+margin_top = 121.0
 margin_right = 198.0
-margin_bottom = 125.0
+margin_bottom = 160.0
 rect_pivot_offset = Vector2( 99, 20 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -103,9 +90,9 @@ __meta__ = {
 }
 
 [node name="Option_enable_particles" type="CheckBox" parent="Options"]
-margin_top = 129.0
+margin_top = 164.0
 margin_right = 317.0
-margin_bottom = 168.0
+margin_bottom = 203.0
 rect_pivot_offset = Vector2( 159, 20 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -116,17 +103,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 135.0
-margin_top = 151.019
-margin_right = 317.0
-margin_bottom = 182.019
-rect_scale = Vector2( 2.5, 2.5 )
-text = "Game Options"
-[connection signal="mouse_entered" from="BackButton" to="BackButton" method="_on_BackButton_mouse_entered"]
-[connection signal="mouse_exited" from="BackButton" to="BackButton" method="_on_BackButton_mouse_exited"]
-[connection signal="button_up" from="SaveButton" to="." method="_on_SaveButton_button_up"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Options"]
+margin_top = 207.0
+margin_right = 318.0
+margin_bottom = 244.0
+
+[node name="SaveButton" type="Button" parent="Options/HBoxContainer"]
+margin_right = 73.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 80, 33 )
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Save"
+
+[node name="BackButton" parent="Options/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 243.0
+margin_right = 318.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 80, 33 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"
+script = ExtResource( 1 )
 [connection signal="button_up" from="Options/Option_God_mode" to="." method="_on_Option_God_mode_button_up"]
 [connection signal="button_up" from="Options/Option_enable_shields" to="." method="_on_Option_enable_shields_button_up"]
 [connection signal="button_up" from="Options/Option_enable_audio" to="." method="_on_Option_enable_audio_button_up"]
 [connection signal="button_up" from="Options/Option_enable_particles" to="." method="_on_Option_enable_particles_button_up"]
+[connection signal="button_up" from="Options/HBoxContainer/SaveButton" to="." method="_on_SaveButton_button_up"]
+[connection signal="mouse_entered" from="Options/HBoxContainer/BackButton" to="Options/HBoxContainer/BackButton" method="_on_BackButton_mouse_entered"]
+[connection signal="mouse_exited" from="Options/HBoxContainer/BackButton" to="Options/HBoxContainer/BackButton" method="_on_BackButton_mouse_exited"]

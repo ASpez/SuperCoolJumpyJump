@@ -27,3 +27,4 @@ func _on_Option_enable_particles_button_up() -> void:
 
 func _on_SaveButton_button_up() -> void:
 	PlayerData.save_settings()
+

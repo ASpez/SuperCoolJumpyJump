@@ -14,6 +14,7 @@ var rand: Vector2
 var _movePB: bool = true
 var _moveIB: bool = true
 var _moveQB: bool = true
+var _moveSB: bool = true
 
 
 func _ready() -> void:
@@ -22,9 +23,11 @@ func _ready() -> void:
 	rng.randomize()
 	$Version.text = "Version: %s" % PlayerData.VERSION
 	AudioServer.set_bus_volume_db(bus_music, busdb_music)
-	$CanvasLayer/UserInterface/Level.visible = false
-	$CanvasLayer/UserInterface/Score.visible = false
-	
+	$UserInterface/UserInterface/Level.visible = false
+	$UserInterface/UserInterface/Score.visible = false
+
+
+func _process(delta: float) -> void:
 	if PlayerData.option_enable_audio:
 		AudioServer.set_bus_mute(bus_master, false)
 	else:
@@ -32,7 +35,12 @@ func _ready() -> void:
 		
 	if not PlayerData.option_enable_particles:
 		$Particles2D.emitting = false
-	
+		$Particles2D.visible = false
+	else:
+		$Particles2D.emitting = true
+		$Particles2D.visible = true
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("volup"):
 			busdb_music = AudioServer.get_bus_volume_db(bus_music) + 3.0
@@ -56,15 +64,23 @@ func _on_Timer_timeout() -> void:
 func _on_TimerButtonFlip_timeout() -> void:
 	rng.randomize()
 	_movePB = rng.randi_range(0, 1)
-	#rng.randomize()
+	rng.randomize()
 	_moveIB = rng.randi_range(0, 1)
-	#rng.randomize()
+	rng.randomize()
 	_moveQB = rng.randi_range(0, 1)
+	rng.randomize()
+	_moveSB = rng.randi_range(0, 1)
 	
 	var _btn_anim = $ButtonAnimation.get_animation("ButtonFlip")
 	var _pbTrack = _btn_anim.find_track("Menu/PlayButton:rect_rotation")
 	var _ibTrack = _btn_anim.find_track("Menu/InfoButton:rect_rotation")
 	var _qbTrack = _btn_anim.find_track("Menu/QuitButton:rect_rotation")
+	var _sbTrack = _btn_anim.find_track("Menu/SettingsButton:rect_rotation")
+	
+	_btn_anim.track_set_enabled(_pbTrack, false)
+	_btn_anim.track_set_enabled(_ibTrack, false)
+	_btn_anim.track_set_enabled(_qbTrack, false)
+	_btn_anim.track_set_enabled(_sbTrack, false)
 	
 	if _movePB:
 		_btn_anim.track_set_enabled(_pbTrack, true)
@@ -72,6 +88,8 @@ func _on_TimerButtonFlip_timeout() -> void:
 		_btn_anim.track_set_enabled(_ibTrack, true)
 	if _moveQB:
 		_btn_anim.track_set_enabled(_qbTrack, true)
+	if _moveSB:
+		_btn_anim.track_set_enabled(_sbTrack, true)
 	
 	if rng.randi_range(0, 1):
 		$ButtonAnimation.play("ButtonFlip")
@@ -85,3 +103,5 @@ func _on_TimerButtonFlip_timeout() -> void:
 	
 	
 	
+
+
