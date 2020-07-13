@@ -9,7 +9,7 @@ export var next_scene: PackedScene
 
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not PlayerData.option_enable_particles:
 		$Particles2D.emitting = false
 	else:

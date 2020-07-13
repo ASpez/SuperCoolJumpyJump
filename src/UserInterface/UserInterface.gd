@@ -29,7 +29,8 @@ func _ready() -> void:
 		set_audio_mute("All", true)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	check_buffs()
 	if not PlayerData.option_enable_audio:
 		set_audio_mute("All", true)
 		
@@ -44,6 +45,22 @@ func set_audio_mute(audio_type: String, _mute: bool) -> void:
 		"Effects", "All":
 			AudioServer.set_bus_mute(bus_effects, _mute)
 
+
+func check_buffs() -> void:
+	if PlayerData.buff_double_shield:
+		$ShieldBuff.visible = true
+	else:
+		$ShieldBuff.visible = false
+	
+	if PlayerData.buff_jump_boost:
+		$JumpBuff.visible = true
+	else:
+		$JumpBuff.visible = false
+		
+	if PlayerData.buff_speed_boost:
+		$SpeedBuff.visible = true
+	else:
+		$SpeedBuff.visible = false
 
 
 func _on_PlayerData_player_died() -> void:

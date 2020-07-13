@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://src/Screens/EndScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Level 3.wav" type="AudioStream" id=9]
+[ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=12]
 
 [node name="Level06" type="Node2D"]
 
@@ -197,5 +200,14 @@ pause_mode = 2
 stream = ExtResource( 9 )
 autoplay = true
 bus = "Music"
+
+[node name="SpeedBoost" parent="." instance=ExtResource( 10 )]
+visible = false
+
+[node name="JumpBoost" parent="." instance=ExtResource( 11 )]
+visible = false
+
+[node name="ShieldBoost" parent="." instance=ExtResource( 12 )]
+visible = false
 
 [editable path="Player"]

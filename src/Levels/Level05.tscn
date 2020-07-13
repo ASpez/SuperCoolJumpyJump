@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://src/Levels/Level06.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Level 3.wav" type="AudioStream" id=9]
+[ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Objects/ShieldBoost.gd" type="Script" id=13]
+[ext_resource path="res://src/Objects/JumpBoost.gd" type="Script" id=14]
+[ext_resource path="res://src/Objects/SpeedBoost.gd" type="Script" id=15]
 
 [node name="Level05" type="Node2D"]
 
@@ -313,5 +319,23 @@ pause_mode = 2
 stream = ExtResource( 9 )
 autoplay = true
 bus = "Music"
+
+[node name="SpeedBoost" type="Area2D" parent="." instance=ExtResource( 10 )]
+visible = false
+collision_layer = 4
+script = ExtResource( 15 )
+
+[node name="JumpBoost" type="Area2D" parent="." instance=ExtResource( 11 )]
+visible = false
+collision_layer = 4
+script = ExtResource( 14 )
+
+[node name="ShieldBoost" type="Area2D" parent="." instance=ExtResource( 12 )]
+visible = false
+collision_layer = 4
+script = ExtResource( 13 )
+[connection signal="body_entered" from="SpeedBoost" to="SpeedBoost" method="_on_body_entered"]
+[connection signal="body_entered" from="JumpBoost" to="JumpBoost" method="_on_body_entered"]
+[connection signal="body_entered" from="ShieldBoost" to="ShieldBoost" method="_on_body_entered"]
 
 [editable path="Player"]

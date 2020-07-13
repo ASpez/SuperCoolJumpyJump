@@ -14,9 +14,13 @@ var option_enable_shields: bool
 var option_enable_audio: bool
 var option_enable_particles: bool
 
+var buff_double_shield: bool = false
+var buff_speed_boost: bool = false
+var buff_jump_boost: bool = false
+
 var config = ConfigFile.new()
 
-const VERSION = "v0.0.34"
+const VERSION = "v0.0.39"
 const CFG_FILE = "user://settings.cfg"
 
 

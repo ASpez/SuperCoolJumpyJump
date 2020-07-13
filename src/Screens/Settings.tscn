@@ -66,6 +66,7 @@ margin_top = 78.0
 margin_right = 215.0
 margin_bottom = 117.0
 rect_pivot_offset = Vector2( 108, 20 )
+hint_tooltip = "Takes effect at the begginging of the next stage"
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://assets/black_soundOn.png" type="Texture" id=12]
 [ext_resource path="res://src/Screens/Settings.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/UserInterface/UserInterfaceSettingsButton.gd" type="Script" id=14]
+[ext_resource path="res://assets/buff_speed_boost.png" type="Texture" id=15]
+[ext_resource path="res://assets/buff_jump_boost.png" type="Texture" id=16]
+[ext_resource path="res://assets/buff_double_shield.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.768627, 1, 0.054902, 1 )
@@ -296,6 +299,36 @@ __meta__ = {
 
 [node name="Settings" parent="." instance=ExtResource( 13 )]
 visible = false
+
+[node name="ShieldBuff" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_left = 150.0
+margin_top = 38.0
+margin_right = 217.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 17 )
+
+[node name="JumpBuff" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_left = 185.0
+margin_top = 38.0
+margin_right = 252.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 16 )
+
+[node name="SpeedBuff" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_left = 220.0
+margin_top = 38.0
+margin_right = 287.0
+margin_bottom = 105.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 15 )
 [connection signal="mouse_entered" from="PauseOverlay/PauseMenu/RetryButton" to="PauseOverlay/PauseMenu/RetryButton" method="_on_RetryButton_mouse_entered"]
 [connection signal="mouse_exited" from="PauseOverlay/PauseMenu/RetryButton" to="PauseOverlay/PauseMenu/RetryButton" method="_on_RetryButton_mouse_exited"]
 [connection signal="mouse_entered" from="PauseOverlay/PauseMenu/ChangeSceneButton" to="PauseOverlay/PauseMenu/ChangeSceneButton" method="_on_ChangeSceneButton_mouse_entered"]

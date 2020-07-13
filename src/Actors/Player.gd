@@ -12,10 +12,27 @@ var is_dying: bool = false
 var has_shield: bool = false
 var is_teleporting = false
 
+var can_get_jump_boost: bool
+var can_get_speed_boost: bool
+var can_get_shield_boost: bool
+
+
+func _ready() -> void:
+	if PlayerData.option_enable_shields:
+		$shield.visible = true
+		has_shield = true
+	else:
+		$shield.visible = false
+		has_shield = false
+		
+	can_get_jump_boost = PlayerData.buff_jump_boost
+	can_get_speed_boost = PlayerData.buff_speed_boost
+	can_get_shield_boost = PlayerData.buff_double_shield
 
 
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+	spawn_power_up()
 
 
 func _on_EnemyDetector_body_entered(_body: Node) -> void:
@@ -32,7 +49,7 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		yield(player_died_anim, "animation_finished")
 		die()
 	
-	if has_shield == true:
+	if has_shield == true and PlayerData.buff_double_shield == false:
 		$shield.visible = false
 		lost_shield_snd_player.play()
 		$HitTimer.start()
@@ -40,19 +57,14 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		yield($HitTimer,"timeout")
 		has_shield = false
 		self.visible = true
-
-
-func _process(delta: float) -> void:
-	if PlayerData.option_enable_shields:
-		$shield.visible = true
-		has_shield = true
-	else:
-		$shield.visible = false
-		has_shield = false
-
+		
+	if PlayerData.buff_double_shield:
+		lost_shield_snd_player.play()
+		PlayerData.buff_double_shield = false
 
 
 func _physics_process(_delta: float) -> void:
+	check_buffs()
 	if is_teleporting and PlayerData.option_enable_particles:
 		$Particles2D.emitting = true
 	if is_teleporting == false and is_dying == false:
@@ -102,4 +114,52 @@ func die() -> void:
 	#queue_free()
 
 
+func check_buffs() -> void:
+	if PlayerData.buff_jump_boost:
+		gravity = 3700
+	else:
+		gravity = 4000
+		
+	if PlayerData.buff_speed_boost:
+		speed.x = 600
+	else:
+		speed.x = 500
+		
+	if PlayerData.buff_double_shield:
+		$shield.modulate = Color("#2cff00")
+	else:
+		$shield.modulate = Color("#ffffff")
 
+
+func spawn_power_up() -> void:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var rand = rng.randi_range(0, 100)
+	var node: Node
+	
+	if rand < 5:
+		match rng.randi_range(0, 2):
+			0:
+				if can_get_speed_boost:
+					can_get_speed_boost = false
+					node = get_node("../SpeedBoost")
+					yield(get_tree().create_timer(.75), "timeout")
+					node.position = self.position + Vector2(50.0, -300.0)
+					node.visible = true
+			1:
+				if can_get_jump_boost:
+					can_get_jump_boost = false
+					node = get_node("../JumpBoost")
+					yield(get_tree().create_timer(.75), "timeout")
+					node.position = self.position + Vector2(50.0, -300.0)
+					node.visible = true
+			2:
+				if can_get_shield_boost:
+					can_get_shield_boost = false
+					node = get_node("../ShieldBoost")
+					yield(get_tree().create_timer(.75), "timeout")
+					node.position = self.position + Vector2(50.0, -300.0)
+					node.visible = true
+
+	
+	
