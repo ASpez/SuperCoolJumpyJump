@@ -12,10 +12,6 @@ var is_dying: bool = false
 var has_shield: bool = false
 var is_teleporting = false
 
-var can_get_jump_boost: bool
-var can_get_speed_boost: bool
-var can_get_shield_boost: bool
-
 
 func _ready() -> void:
 	if PlayerData.option_enable_shields:
@@ -24,10 +20,6 @@ func _ready() -> void:
 	else:
 		$shield.visible = false
 		has_shield = false
-		
-	can_get_jump_boost = PlayerData.buff_jump_boost
-	can_get_speed_boost = PlayerData.buff_speed_boost
-	can_get_shield_boost = PlayerData.buff_double_shield
 
 
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
@@ -61,6 +53,7 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 	if PlayerData.buff_double_shield:
 		lost_shield_snd_player.play()
 		PlayerData.buff_double_shield = false
+		PlayerData.score -= 100
 
 
 func _physics_process(_delta: float) -> void:
@@ -111,9 +104,18 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 func die() -> void:
 	if PlayerData.deaths < 99:
 		PlayerData.deaths += 1
+	reset_buffs()
 	#queue_free()
 
 
+func reset_buffs()-> void:
+	PlayerData.can_get_jump_boost = true
+	PlayerData.can_get_shield_boost = true
+	PlayerData.can_get_speed_boost = true
+	PlayerData.buff_double_shield = false
+	PlayerData.buff_speed_boost = false
+	PlayerData.buff_jump_boost = false
+	
 func check_buffs() -> void:
 	if PlayerData.buff_jump_boost:
 		gravity = 3700
@@ -137,25 +139,25 @@ func spawn_power_up() -> void:
 	var rand = rng.randi_range(0, 100)
 	var node: Node
 	
-	if rand < 5:
+	if rand < 95:
 		match rng.randi_range(0, 2):
 			0:
-				if can_get_speed_boost:
-					can_get_speed_boost = false
+				if PlayerData.can_get_speed_boost:
+					PlayerData.can_get_speed_boost = false
 					node = get_node("../SpeedBoost")
 					yield(get_tree().create_timer(.75), "timeout")
 					node.position = self.position + Vector2(50.0, -300.0)
 					node.visible = true
 			1:
-				if can_get_jump_boost:
-					can_get_jump_boost = false
+				if PlayerData.can_get_jump_boost:
+					PlayerData.can_get_jump_boost = false
 					node = get_node("../JumpBoost")
 					yield(get_tree().create_timer(.75), "timeout")
 					node.position = self.position + Vector2(50.0, -300.0)
 					node.visible = true
 			2:
-				if can_get_shield_boost:
-					can_get_shield_boost = false
+				if PlayerData.can_get_shield_boost:
+					PlayerData.can_get_shield_boost = false
 					node = get_node("../ShieldBoost")
 					yield(get_tree().create_timer(.75), "timeout")
 					node.position = self.position + Vector2(50.0, -300.0)

@@ -18,6 +18,10 @@ var buff_double_shield: bool = false
 var buff_speed_boost: bool = false
 var buff_jump_boost: bool = false
 
+var can_get_jump_boost: bool = true
+var can_get_speed_boost: bool = true
+var can_get_shield_boost: bool = true
+
 var config = ConfigFile.new()
 
 const VERSION = "v0.0.39"
@@ -67,7 +71,8 @@ func set_deaths(value: int) -> void:
 	
 	
 func set_score(value: int) -> void:
-	score = value
-	emit_signal("score_updated")
+	if score > 100:
+		score = value
+		emit_signal("score_updated")
 	
 
