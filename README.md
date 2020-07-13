@@ -1,12 +1,13 @@
 # Super Cool Jumpy Jump
-First game made with Godot 3.2
-Godot can be found here: https://godotengine.org/
-
-
+First game made with Godot 3.2  
+Godot can be found [here](https://godotengine.org/)  
+Godot is pretty powerful and getting better with each release.  
+You can export your projects for Winblowz, MacOSX, Crapple, Android, and HTML5!  
+  
 # Project is based on a tutorial
-You can watch it here: https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ  
-This project has morphed into a bit of a frankengame from the original tutorial.
-
+You can watch it [here] (https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)  
+This project has morphed into a bit of a frankengame from the original tutorial.  
+  
 # Things to work on
 - [x] Highscore save file
 - [x] Settings screen
@@ -14,8 +15,8 @@ This project has morphed into a bit of a frankengame from the original tutorial.
 - [x] Power-ups
 - [ ] More Effects
 - [ ] More levels
-
+  
 # Acknowledgments
-* GDQuest
+* [GDQuest](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)
 * https://opengameart.org
 * ...and You!
