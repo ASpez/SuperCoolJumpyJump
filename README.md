@@ -4,7 +4,7 @@ Godot can be found here: https://godotengine.org/
 
 
 # Project is based on a tutorial
-You can watch it here: https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ
+You can watch it here: https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ  
 This project has morphed into a bit of a frankengame from the original tutorial.
 
 # Things to work on
