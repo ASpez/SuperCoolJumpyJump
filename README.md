@@ -5,7 +5,7 @@ Godot is pretty powerful and getting better with each release.
 You can export your projects to Winblowz, MacOSX, Crapple, Android, and HTML5!  
   
 # Project is based on a tutorial
-You can watch it [here] (https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)  
+You can watch it [here](https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ)  
 This project has morphed into a bit of a frankengame from the original tutorial.  
 If you are thinking about learning Godot, this is pretty good. A few others I've  
 found that look good as well  
