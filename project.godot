@@ -28,6 +28,10 @@ config/icon="res://assets/icon.png"
 
 PlayerData="*res://src/Autoload/PlayerData.tscn"
 
+[debug]
+
+settings/stdout/verbose_stdout=true
+
 [display]
 
 window/size/width=1920

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/background/country-platform-back.png" type="Texture" id=14]
+[ext_resource path="res://assets/background/country-platform-forest.png" type="Texture" id=15]
 
 [node name="Level01" type="Node2D"]
 script = ExtResource( 10 )
@@ -29,6 +31,7 @@ layer = 101
 layer = -1
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.00012207
@@ -37,6 +40,29 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_base_scale = Vector2( 0.3, 1 )
+
+[node name="PBHill" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Hill" type="Sprite" parent="CanvasLayer/PBackground/PBHill"]
+scale = Vector2( 5, 4.80357 )
+texture = ExtResource( 14 )
+centered = false
+
+[node name="PBForest" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_offset = Vector2( 1920, 0 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Forest" type="Sprite" parent="CanvasLayer/PBackground/PBForest"]
+position = Vector2( 0, 698 )
+scale = Vector2( 11.9875, 1 )
+texture = ExtResource( 15 )
+centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -4, 280 )

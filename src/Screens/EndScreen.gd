@@ -43,6 +43,7 @@ func _ready() -> void:
 	
 	if hs.is_high_score(PlayerData.score):
 		$WindowDialog.popup_centered()
+		$WindowDialog/hs_name.grab_focus()
 
 
 func _physics_process(delta: float) -> void:

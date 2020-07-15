@@ -12,7 +12,7 @@ var level: = 1 setget set_level
 var option_god_mode: bool
 var option_enable_shields: bool
 var option_enable_audio: bool
-var option_enable_particles: bool
+var option_enable_particles: bool = true
 
 var buff_double_shield: bool = false
 var buff_speed_boost: bool = false
@@ -24,7 +24,7 @@ var can_get_shield_boost: bool = true
 
 var config = ConfigFile.new()
 
-const VERSION = "v0.0.39"
+const VERSION = "v0.0.42"
 const CFG_FILE = "user://settings.cfg"
 
 
@@ -36,6 +36,12 @@ func reset() -> void:
 	score = 0
 	deaths = 0
 	level = 1
+	buff_double_shield = false
+	buff_speed_boost = false
+	buff_jump_boost = false
+	can_get_jump_boost = true
+	can_get_speed_boost = true
+	can_get_shield_boost = true
 	
 
 func load_settings() -> void:
@@ -71,8 +77,7 @@ func set_deaths(value: int) -> void:
 	
 	
 func set_score(value: int) -> void:
-	if score > 100:
-		score = value
-		emit_signal("score_updated")
+	score = value
+	emit_signal("score_updated")
 	
 

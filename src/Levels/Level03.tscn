@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -12,9 +12,8 @@
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Objects/ShieldBoost.gd" type="Script" id=13]
-[ext_resource path="res://src/Objects/JumpBoost.gd" type="Script" id=14]
-[ext_resource path="res://src/Objects/SpeedBoost.gd" type="Script" id=15]
+[ext_resource path="res://assets/background/country-platform-back.png" type="Texture" id=13]
+[ext_resource path="res://assets/background/country-platform-forest.png" type="Texture" id=14]
 
 [node name="Level03" type="Node2D"]
 
@@ -27,6 +26,7 @@ layer = 101
 layer = -1
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.00012207
@@ -35,6 +35,29 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_base_scale = Vector2( 0.3, 1 )
+
+[node name="PBHill" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Hill" type="Sprite" parent="CanvasLayer/PBackground/PBHill"]
+scale = Vector2( 5, 4.83764 )
+texture = ExtResource( 13 )
+centered = false
+
+[node name="PBForest" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_offset = Vector2( 1920, 0 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Forest" type="Sprite" parent="CanvasLayer/PBackground/PBForest"]
+position = Vector2( 0, 6 )
+scale = Vector2( 11.9875, 4.79745 )
+texture = ExtResource( 14 )
+centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -3, 280 )
@@ -147,22 +170,13 @@ stream = ExtResource( 9 )
 autoplay = true
 bus = "Music"
 
-[node name="SpeedBoost" type="Area2D" parent="." instance=ExtResource( 10 )]
+[node name="SpeedBoost" parent="." instance=ExtResource( 10 )]
 visible = false
-collision_layer = 4
-script = ExtResource( 15 )
 
-[node name="JumpBoost" type="Area2D" parent="." instance=ExtResource( 11 )]
+[node name="JumpBoost" parent="." instance=ExtResource( 11 )]
 visible = false
-collision_layer = 4
-script = ExtResource( 14 )
 
-[node name="ShieldBoost" type="Area2D" parent="." instance=ExtResource( 12 )]
+[node name="ShieldBoost" parent="." instance=ExtResource( 12 )]
 visible = false
-collision_layer = 4
-script = ExtResource( 13 )
-[connection signal="body_entered" from="SpeedBoost" to="SpeedBoost" method="_on_body_entered"]
-[connection signal="body_entered" from="JumpBoost" to="JumpBoost" method="_on_body_entered"]
-[connection signal="body_entered" from="ShieldBoost" to="ShieldBoost" method="_on_body_entered"]
 
 [editable path="Player"]

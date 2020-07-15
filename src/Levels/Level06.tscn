@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/background.png" type="Texture" id=4]
+[ext_resource path="res://assets/background/cave.png" type="Texture" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Screens/EndScreen.tscn" type="PackedScene" id=7]
@@ -12,8 +12,10 @@
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Levels/Level06.gd" type="Script" id=13]
 
 [node name="Level06" type="Node2D"]
+script = ExtResource( 13 )
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 101
@@ -23,15 +25,18 @@ layer = 101
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="background" type="TextureRect" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+[node name="PBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_base_scale = Vector2( 0.3, 1 )
+
+[node name="PBCave" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 1000, 1080 )
+
+[node name="Cave" type="Sprite" parent="CanvasLayer/PBackground/PBCave"]
+position = Vector2( 1.97046, 7.63544 )
+scale = Vector2( 0.487714, 0.27223 )
 texture = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -3, 280 )

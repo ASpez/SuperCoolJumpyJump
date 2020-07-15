@@ -8,6 +8,8 @@ onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
 var is_picked: bool = false
 
 func _on_body_entered(_body: Node) -> void:
+	if anim_player.current_animation == "Appear":
+		return
 	if is_picked == false:
 		is_picked = true
 		picked()

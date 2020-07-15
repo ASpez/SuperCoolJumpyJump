@@ -14,9 +14,9 @@
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/Objects/ShieldBoost.gd" type="Script" id=15]
-[ext_resource path="res://src/Objects/JumpBoost.gd" type="Script" id=16]
-[ext_resource path="res://src/Objects/SpeedBoost.gd" type="Script" id=17]
+[ext_resource path="res://assets/background/parallax-mountain-montain-far.png" type="Texture" id=15]
+[ext_resource path="res://assets/background/parallax-mountain-bg.png" type="Texture" id=16]
+[ext_resource path="res://assets/background/parallax-mountain-foreground-trees.png" type="Texture" id=17]
 
 [node name="Level04" type="Node2D"]
 script = ExtResource( 11 )
@@ -33,6 +33,7 @@ layer = 101
 layer = -1
 
 [node name="background" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.00012207
@@ -41,6 +42,38 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_base_scale = Vector2( 0.3, 1 )
+
+[node name="PBSky" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Sky" type="Sprite" parent="CanvasLayer/PBackground/PBSky"]
+scale = Vector2( 7.06115, 4.80357 )
+texture = ExtResource( 16 )
+centered = false
+
+[node name="PBMountainFar" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.6, 1 )
+motion_offset = Vector2( 1920, 0 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="MountainFar" type="Sprite" parent="CanvasLayer/PBackground/PBMountainFar"]
+position = Vector2( 0, 1.21399 )
+scale = Vector2( 7.07019, 5.35491 )
+texture = ExtResource( 15 )
+centered = false
+
+[node name="PBTrees" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
+motion_scale = Vector2( 0.9, 1 )
+
+[node name="Trees" type="Sprite" parent="CanvasLayer/PBackground/PBTrees"]
+position = Vector2( 2.66968, 381.764 )
+scale = Vector2( 3.52736, 2.86877 )
+texture = ExtResource( 17 )
+centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -3, 280 )
@@ -207,23 +240,14 @@ stream = ExtResource( 9 )
 autoplay = true
 bus = "Music"
 
-[node name="SpeedBoost" type="Area2D" parent="." instance=ExtResource( 12 )]
+[node name="SpeedBoost" parent="." instance=ExtResource( 12 )]
 visible = false
-collision_layer = 4
-script = ExtResource( 17 )
 
-[node name="JumpBoost" type="Area2D" parent="." instance=ExtResource( 13 )]
+[node name="JumpBoost" parent="." instance=ExtResource( 13 )]
 visible = false
-collision_layer = 4
-script = ExtResource( 16 )
 
-[node name="ShieldBoost" type="Area2D" parent="." instance=ExtResource( 14 )]
+[node name="ShieldBoost" parent="." instance=ExtResource( 14 )]
 visible = false
-collision_layer = 4
-script = ExtResource( 15 )
 [connection signal="dead" from="Enemies/Boss" to="." method="_on_Boss_dead"]
-[connection signal="body_entered" from="SpeedBoost" to="SpeedBoost" method="_on_body_entered"]
-[connection signal="body_entered" from="JumpBoost" to="JumpBoost" method="_on_body_entered"]
-[connection signal="body_entered" from="ShieldBoost" to="ShieldBoost" method="_on_body_entered"]
 
 [editable path="Player"]

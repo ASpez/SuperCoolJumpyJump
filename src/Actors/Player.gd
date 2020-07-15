@@ -1,10 +1,11 @@
 extends Actor
 
 
-onready var snd_player: AudioStreamPlayer2D = $PlayerDeathSound
-onready var jmp_snd_player: AudioStreamPlayer2D = $JumpSound
-onready var lost_shield_snd_player: AudioStreamPlayer2D = $LostShieldSound
 onready var player_died_anim: AnimationPlayer = $PlayerDied
+onready var powerup_snd: AudioStreamPlayer2D = $PowerUSpawn
+onready var jmp_snd_player: AudioStreamPlayer2D = $JumpSound
+onready var snd_player: AudioStreamPlayer2D = $PlayerDeathSound
+onready var lost_shield_snd_player: AudioStreamPlayer2D = $LostShieldSound
 
 export var stomp_impulse: = 1500.0
 
@@ -12,8 +13,12 @@ var is_dying: bool = false
 var has_shield: bool = false
 var is_teleporting = false
 
+# Increases with each level
+var powerup_bonus_chance = 3
+
 
 func _ready() -> void:
+	powerup_bonus_chance += (PlayerData.level * 2)
 	if PlayerData.option_enable_shields:
 		$shield.visible = true
 		has_shield = true
@@ -41,19 +46,25 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		yield(player_died_anim, "animation_finished")
 		die()
 	
-	if has_shield == true and PlayerData.buff_double_shield == false:
+	if has_shield == true:
+		$HitTimer.start()
+		if PlayerData.buff_double_shield:
+			lost_shield_snd_player.play()
+			PlayerData.buff_double_shield = false
+			PlayerData.can_get_shield_boost = true
+			PlayerData.score -= 100
+			self.visible = true
+			return
+
 		$shield.visible = false
 		lost_shield_snd_player.play()
-		$HitTimer.start()
+		
 		#yield(get_tree().create_timer(1), "timeout")
 		yield($HitTimer,"timeout")
 		has_shield = false
 		self.visible = true
 		
-	if PlayerData.buff_double_shield:
-		lost_shield_snd_player.play()
-		PlayerData.buff_double_shield = false
-		PlayerData.score -= 100
+	
 
 
 func _physics_process(_delta: float) -> void:
@@ -129,6 +140,8 @@ func check_buffs() -> void:
 		
 	if PlayerData.buff_double_shield:
 		$shield.modulate = Color("#2cff00")
+		$shield.visible = true
+		has_shield = true
 	else:
 		$shield.modulate = Color("#ffffff")
 
@@ -139,29 +152,37 @@ func spawn_power_up() -> void:
 	var rand = rng.randi_range(0, 100)
 	var node: Node
 	
-	if rand < 95:
+	if rand < powerup_bonus_chance:
 		match rng.randi_range(0, 2):
 			0:
 				if PlayerData.can_get_speed_boost:
 					PlayerData.can_get_speed_boost = false
 					node = get_node("../SpeedBoost")
-					yield(get_tree().create_timer(.75), "timeout")
-					node.position = self.position + Vector2(50.0, -300.0)
+					powerup_snd.play()
+					node.position = self.position + Vector2(50, -200)
 					node.visible = true
+					node.get_node("AnimationPlayer").play("Appear")
+					yield(get_tree().create_timer(1), "timeout")
+					node.get_node("AnimationPlayer").play("bouncing")
+
 			1:
 				if PlayerData.can_get_jump_boost:
 					PlayerData.can_get_jump_boost = false
 					node = get_node("../JumpBoost")
-					yield(get_tree().create_timer(.75), "timeout")
-					node.position = self.position + Vector2(50.0, -300.0)
+					powerup_snd.play()
+					node.position = self.position + Vector2(50, -200)
 					node.visible = true
+					node.get_node("AnimationPlayer").play("Appear")
+					yield(get_tree().create_timer(1), "timeout")
+					node.get_node("AnimationPlayer").play("bouncing")
+
 			2:
 				if PlayerData.can_get_shield_boost:
 					PlayerData.can_get_shield_boost = false
 					node = get_node("../ShieldBoost")
-					yield(get_tree().create_timer(.75), "timeout")
-					node.position = self.position + Vector2(50.0, -300.0)
+					powerup_snd.play()
+					node.position = self.position + Vector2(50, -200)
 					node.visible = true
-
-	
-	
+					node.get_node("AnimationPlayer").play("Appear")
+					yield(get_tree().create_timer(1), "timeout")
+					node.get_node("AnimationPlayer").play("bouncing")
