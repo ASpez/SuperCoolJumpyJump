@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/Level04.tscn" type="PackedScene" id=7]
@@ -25,17 +24,6 @@ layer = 101
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="background" type="TextureRect" parent="CanvasLayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.00012207
-texture = ExtResource( 4 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="PBackground" type="ParallaxBackground" parent="CanvasLayer"]
 scroll_base_scale = Vector2( 0.3, 1 )
 
@@ -55,7 +43,7 @@ motion_mirroring = Vector2( 1920, 0 )
 
 [node name="Forest" type="Sprite" parent="CanvasLayer/PBackground/PBForest"]
 position = Vector2( 0, 6 )
-scale = Vector2( 11.9875, 4.79745 )
+scale = Vector2( 12.0003, 4.797 )
 texture = ExtResource( 14 )
 centered = false
 
