@@ -8,6 +8,7 @@
 [node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 theme = ExtResource( 5 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -66,7 +67,8 @@ margin_top = 78.0
 margin_right = 215.0
 margin_bottom = 117.0
 rect_pivot_offset = Vector2( 108, 20 )
-hint_tooltip = "Takes effect at the begginging of the next stage"
+hint_tooltip = "Takes effect at the beginning of the next stage"
+mouse_filter = 1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )

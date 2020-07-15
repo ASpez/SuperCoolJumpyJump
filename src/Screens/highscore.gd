@@ -55,7 +55,7 @@ func set_high_scores(name: String, score: int, deaths: int) -> void:
 func create_default_file() -> void:
 	var default_list = ["Samus O'Aaron,24500,0", "Tater Salad,20000,0", "Beafis,15000,0",
 	"Mean Joe,10000,1", "Sonik,8000,1", "Duke Chochula,6000,1", "Chuck S. Cheese,4000,2",
-	"Bob Evans,2000,2", "Curly,1000,4", "Bubba,500,10"]
+	"Bob Evans,2000,2", "Curly,1000,4", "Bubba,100,99"]
 	
 	var file = File.new()
 	file.open(HIGH_SCORE_FILE, file.WRITE)

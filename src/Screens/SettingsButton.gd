@@ -13,7 +13,7 @@ func _on_SettingsButton_mouse_exited() -> void:
 
 
 func _on_SettingsButton_button_up() -> void:
-	get_tree().paused = true
+	#get_tree().paused = true
 	var root = get_tree().get_root()
 	var main_scene = root.get_child(root.get_child_count() - 1)
 	var current_scene = get_tree().get_current_scene().get_name()

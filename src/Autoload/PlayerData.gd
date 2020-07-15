@@ -24,7 +24,7 @@ var can_get_shield_boost: bool = true
 
 var config = ConfigFile.new()
 
-const VERSION = "v0.0.42"
+const VERSION = "v0.0.43"
 const CFG_FILE = "user://settings.cfg"
 
 

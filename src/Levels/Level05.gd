@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if player.position.y > 843:
+	if player.position.y > 960:
 		AudioServer.set_bus_effect_enabled(bus_effects, 0, true)
 	else:
 		AudioServer.set_bus_effect_enabled(bus_effects, 0, false)

@@ -46,7 +46,7 @@ motion_mirroring = Vector2( 1920, 0 )
 
 [node name="Forest" type="Sprite" parent="CanvasLayer/PBackground/PBForest"]
 position = Vector2( 0, 6 )
-scale = Vector2( 11.9875, 7.28571 )
+scale = Vector2( 12.0006, 7.28571 )
 texture = ExtResource( 14 )
 centered = false
 

@@ -183,6 +183,7 @@ margin_top = 61.0
 margin_right = 321.0
 margin_bottom = 118.0
 rect_pivot_offset = Vector2( 160, 28 )
+hint_tooltip = "Click here for info about how the game was made and how to play it."
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Info"
@@ -205,6 +206,7 @@ margin_bottom = 240.0
 rect_pivot_offset = Vector2( 160, 28 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 6 )
 autoplay = true
 bus = "Music"

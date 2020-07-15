@@ -53,6 +53,7 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 			PlayerData.buff_double_shield = false
 			PlayerData.can_get_shield_boost = true
 			PlayerData.score -= 100
+			yield($HitTimer,"timeout")
 			self.visible = true
 			return
 
