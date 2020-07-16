@@ -221,27 +221,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Usage" type="Label" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -402.0
-margin_top = -209.0
-margin_right = -6.0
-margin_bottom = -8.0
-theme = ExtResource( 5 )
-text = "Move : WASD/arrow keys
-Jump : Space/up arrow
-Music Volume : +/-
-SFX Volume : PgUp/PgDn
-Mute : M (Music, SFX, On)
-Pause/reset : ESC"
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TitleAnimation" type="AnimationPlayer" parent="."]
 autoplay = "Zoom"
 anims/Zoom = SubResource( 1 )

@@ -65,32 +65,55 @@ __meta__ = {
 
 [node name="Info" type="RichTextLabel" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -806.0
-margin_top = -416.0
-margin_right = 806.0
-margin_bottom = 416.0
+margin_left = -827.5
+margin_right = 827.5
+margin_bottom = 943.0
 focus_mode = 2
 theme = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "This is a starter game based on a tutorial from GDQuest : [url]https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ[/url]
+bbcode_text = "[b] [u]General info [/u][b]
+This is a starter game based on a tutorial from GDQuest : [url]https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ[/url]
 
 A simple platformer where you gather coins and stomp on enemies. Some levels have some minor puzzle elements to it. After level 3 all enemies get a random speed boost. You get a one hit shield to start each level and bonus points for completing a level without losing your shield. 
 
-The game uses the following free assets as permissible under the terms of each asset.
+[b] [u]Controls [/u][b]
+Move : WASD/arrow keys
+Jump : Space/up arrow
+Music Volume : +/-
+SFX Volume : PgUp/PgDn
+Mute : M (Music, SFX, On)
+Pause/reset : ESC
 
+[b] [u]Power-ups [/u][b]
+[img=33x33]res://assets/buff_double_shield.png[/img] Double shield power-up
+[img=33x33]res://assets/buff_speed_boost.png[/img] Speed boost power-up
+[img=33x33]res://assets/buff_jump_boost.png[/img] Jump boost power-up
+
+[b] [u]Assets and acknowledgements [/u][b]
 Coin Sound: [url]https://opengameart.org/content/10-8bit-coin-sounds[/url]
 Jump Sound: By dklon.  [url]https://opengameart.org/content/platformer-jumping-sounds[/url]
 Random SFX (Portal, dying, etc): [url]https://opengameart.org/content/41-random-sound-effects[/url]
 Music: [url]https://opengameart.org/content/5-chiptunes-action[/url]"
-text = "This is a starter game based on a tutorial from GDQuest : https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ
+text = " General info 
+This is a starter game based on a tutorial from GDQuest : https://www.youtube.com/channel/UCxboW7x0jZqFdvMdCFKTMsQ
 
 A simple platformer where you gather coins and stomp on enemies. Some levels have some minor puzzle elements to it. After level 3 all enemies get a random speed boost. You get a one hit shield to start each level and bonus points for completing a level without losing your shield. 
 
-The game uses the following free assets as permissible under the terms of each asset.
+ Controls 
+Move : WASD/arrow keys
+Jump : Space/up arrow
+Music Volume : +/-
+SFX Volume : PgUp/PgDn
+Mute : M (Music, SFX, On)
+Pause/reset : ESC
 
+ Power-ups 
+ Double shield power-up
+ Speed boost power-up
+ Jump boost power-up
+
+ Assets and acknowledgements 
 Coin Sound: https://opengameart.org/content/10-8bit-coin-sounds
 Jump Sound: By dklon.  https://opengameart.org/content/platformer-jumping-sounds
 Random SFX (Portal, dying, etc): https://opengameart.org/content/41-random-sound-effects

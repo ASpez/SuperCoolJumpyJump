@@ -14,8 +14,8 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("volup"):
-			busdb_music = AudioServer.get_bus_volume_db(bus_music) + 3.0
-			AudioServer.set_bus_volume_db(bus_music, busdb_music)
+		busdb_music = AudioServer.get_bus_volume_db(bus_music) + 3.0
+		AudioServer.set_bus_volume_db(bus_music, busdb_music)
 			
 	if event.is_action_pressed("voldown"):
 		busdb_music = AudioServer.get_bus_volume_db(bus_music) - 3.0

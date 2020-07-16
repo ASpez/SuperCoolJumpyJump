@@ -5,10 +5,6 @@ onready var bus_effects: = AudioServer.get_bus_index("Effects")
 onready var player = $Player
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 
 func _process(delta: float) -> void:
 	if player.position.y > 960:

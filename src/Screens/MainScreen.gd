@@ -96,7 +96,7 @@ func _on_TimerButtonFlip_timeout() -> void:
 	else:
 		$ButtonAnimation.play_backwards("ButtonFlip")
 	
-	$TimerButtonFlip.wait_time = 15	
+	$TimerButtonFlip.wait_time = 15
 	$TimerButtonFlip.start()
 	
 	
