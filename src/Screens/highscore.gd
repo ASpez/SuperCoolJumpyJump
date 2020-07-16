@@ -19,7 +19,8 @@ func load_high_scores() -> Array:
 	
 	if not file.file_exists(HIGH_SCORE_FILE):
 		create_default_file()  
-		
+	
+	highscores.clear()
 	file.open(HIGH_SCORE_FILE, file.READ)
 	for i in range(10):
 		var line = file.get_line().split(",")

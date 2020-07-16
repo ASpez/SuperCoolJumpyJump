@@ -9,12 +9,12 @@ export var next_scene: PackedScene
 
 
 
-func _physics_process(delta: float) -> void:
-	#if not PlayerData.option_enable_particles:
-	#	$Particles2D.emitting = false
-	#else:
-	#	$Particles2D.emitting = true
-	pass
+func _process(delta: float) -> void:
+	if not PlayerData.option_enable_particles:
+		$Particles2D.emitting = false
+	else:
+		$Particles2D.emitting = true
+
 
 func _on_body_entered(_body: Node) -> void:
 	if pd.is_teleporting == false:

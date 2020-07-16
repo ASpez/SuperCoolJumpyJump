@@ -238,6 +238,16 @@ margin_right = 1878.0
 margin_bottom = 1051.0
 rect_pivot_offset = Vector2( 100, 30 )
 
+[node name="ResetHighScores" type="Button" parent="."]
+margin_left = 260.509
+margin_top = 991.0
+margin_right = 504.509
+margin_bottom = 1051.0
+text = "Reset High Scores"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HighScoresLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -263,3 +273,4 @@ __meta__ = {
 [connection signal="mouse_exited" from="PlayButton" to="PlayButton" method="_on_PlayButton_mouse_exited"]
 [connection signal="mouse_entered" from="QuitButton" to="QuitButton" method="_on_QuitButton_mouse_entered"]
 [connection signal="mouse_exited" from="QuitButton" to="QuitButton" method="_on_QuitButton_mouse_exited"]
+[connection signal="button_up" from="ResetHighScores" to="." method="_on_ResetHighScores_button_up"]

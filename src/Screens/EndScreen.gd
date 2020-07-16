@@ -104,8 +104,8 @@ func set_high_score_text(highscores: Array) -> void:
 		line += "\n"
 		
 	$HighScoresLabel.append_bbcode(line)
-	
-	
+
+
 func _on_hs_ok_button_button_up() -> void:
 	var name = $WindowDialog/hs_name.text
 	
@@ -117,3 +117,9 @@ func _on_hs_ok_button_button_up() -> void:
 	$WindowDialog.hide()
 	
 	$HighScoresLabel.visible = true
+
+
+func _on_ResetHighScores_button_up() -> void:
+	hs.create_default_file()
+	set_high_score_text(hs.load_high_scores())
+
