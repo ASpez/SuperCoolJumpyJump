@@ -232,6 +232,7 @@ one_shot = true
 one_shot = true
 
 [node name="MusicOnButton" type="TextureButton" parent="."]
+visible = false
 modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1558.96
 margin_top = 25.6529
@@ -259,6 +260,7 @@ size_flags_vertical = 0
 texture_normal = ExtResource( 11 )
 
 [node name="SFXOnButton" type="TextureButton" parent="."]
+visible = false
 modulate = Color( 0.552941, 0.596078, 0.698039, 0.392157 )
 margin_left = 1617.25
 margin_top = 25.6529

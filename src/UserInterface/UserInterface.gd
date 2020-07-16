@@ -27,9 +27,13 @@ func _ready() -> void:
 	
 	if not PlayerData.option_enable_audio:
 		set_audio_mute("All", true)
+	
+	$MusicOnButton.visible = PlayerData.music_on_button_status
+	$MusicOffButton.visible = PlayerData.music_off_button_status
+	$SFXOnButton.visible = PlayerData.sfx_on_button_status
+	$SFXOffButton.visible = PlayerData.sfx_off_button_status
 
-
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	check_buffs()
 	if not PlayerData.option_enable_audio:
 		set_audio_mute("All", true)
@@ -154,24 +158,32 @@ func _on_EffectsTimer_timeout() -> void:
 
 
 func _on_MusicOnButton_button_up() -> void:
+	PlayerData.music_on_button_status = false
+	PlayerData.music_off_button_status = true
 	$MusicOnButton.visible = false
 	$MusicOffButton.visible = true
 	set_audio_mute("Music", true)
 
 
 func _on_MusicOffButton_button_up() -> void:
+	PlayerData.music_on_button_status = true
+	PlayerData.music_off_button_status = false
 	$MusicOnButton.visible = true
 	$MusicOffButton.visible = false
 	set_audio_mute("Music", false)
 
 
 func _on_SFXOnButton_button_up() -> void:
+	PlayerData.sfx_on_button_status = false
+	PlayerData.sfx_off_button_status = true
 	$SFXOnButton.visible = false
 	$SFXOffButton.visible = true
 	set_audio_mute("Effects", true)
 
 
 func _on_SFXOffButton_button_up() -> void:
+	PlayerData.sfx_on_button_status = true
+	PlayerData.sfx_off_button_status = false
 	$SFXOnButton.visible = true
 	$SFXOffButton.visible = false
 	set_audio_mute("Effects", false)

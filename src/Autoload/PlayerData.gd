@@ -22,6 +22,11 @@ var can_get_jump_boost: bool = true
 var can_get_speed_boost: bool = true
 var can_get_shield_boost: bool = true
 
+var music_on_button_status: bool = true
+var music_off_button_status: bool = false
+var sfx_on_button_status: bool = true
+var sfx_off_button_status: bool = false
+
 var config = ConfigFile.new()
 
 const VERSION = "v0.0.44"

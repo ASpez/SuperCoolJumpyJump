@@ -131,5 +131,6 @@ one_shot = true
 
 [node name="PowerUSpawn" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+bus = "Effects"
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
