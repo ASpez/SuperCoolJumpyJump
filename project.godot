@@ -30,7 +30,6 @@ PlayerData="*res://src/Autoload/PlayerData.tscn"
 
 [debug]
 
-settings/stdout/verbose_stdout=true
 gdscript/warnings/unused_variable=false
 gdscript/warnings/shadowed_variable=false
 gdscript/warnings/unused_argument=false

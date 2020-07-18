@@ -1,4 +1,3 @@
-tool
 extends Area2D
 
 onready var pd = get_node("../Player")
@@ -8,9 +7,8 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 export var next_scene: PackedScene
 
 
-
 func _process(delta: float) -> void:
-	if not PlayerData.option_enable_particles:
+	if PlayerData.option_enable_particles == false:
 		$Particles2D.emitting = false
 	else:
 		$Particles2D.emitting = true

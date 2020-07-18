@@ -12,7 +12,7 @@ var level: = 1 setget set_level
 var option_god_mode: bool
 var option_enable_shields: bool
 var option_enable_audio: bool
-var option_enable_particles: bool = true
+var option_enable_particles: bool
 
 var buff_double_shield: bool = false
 var buff_speed_boost: bool = false
@@ -29,7 +29,7 @@ var sfx_off_button_status: bool = false
 
 var config = ConfigFile.new()
 
-const VERSION = "v0.0.44"
+const VERSION = "v0.0.47"
 const CFG_FILE = "user://settings.cfg"
 
 

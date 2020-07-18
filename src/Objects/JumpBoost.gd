@@ -17,6 +17,9 @@ func _on_body_entered(_body: Node) -> void:
 	
 func picked() -> void:
 	PlayerData.buff_jump_boost = true
+	PlayerData.can_get_jump_boost = false
 	snd_player.play()
 	anim_player.play("fade_out")
 	yield(anim_player, "animation_finished")
+	self.position = Vector2(0,0)
+	is_picked = false

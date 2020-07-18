@@ -2,10 +2,13 @@ extends Actor
 
 
 onready var player_died_anim: AnimationPlayer = $PlayerDied
-onready var powerup_snd: AudioStreamPlayer2D = $PowerUSpawn
+onready var powerup_snd: AudioStreamPlayer2D = $PowerUpSpawn
 onready var jmp_snd_player: AudioStreamPlayer2D = $JumpSound
 onready var snd_player: AudioStreamPlayer2D = $PlayerDeathSound
 onready var lost_shield_snd_player: AudioStreamPlayer2D = $LostShieldSound
+
+onready var bus_effects = AudioServer.get_bus_index("Effects")
+onready var bus_echo = AudioServer.get_bus_index("Echo")
 
 export var stomp_impulse: = 1500.0
 
@@ -13,11 +16,15 @@ var is_dying: bool = false
 var has_shield: bool = false
 var is_teleporting = false
 
+var effect_bus_to_use = "Effects"
+
 # Increases with each level
 var powerup_bonus_chance = 3
 
 
 func _ready() -> void:
+	if PlayerData.level == 6:
+		effect_bus_to_use = "Echo"
 	powerup_bonus_chance += (PlayerData.level * 2)
 	if PlayerData.option_enable_shields:
 		$shield.visible = true
@@ -41,8 +48,9 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 	if is_dying == false and is_teleporting == false and has_shield == false:
 		is_dying = true
 		player_died_anim.play("Zoom")
+		#play_effect(snd_player, effect_bus_to_use, true)
 		snd_player.play()
-		yield(snd_player,"finished")
+		yield(snd_player, "finished")
 		yield(player_died_anim, "animation_finished")
 		die()
 	
@@ -50,6 +58,7 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		$HitTimer.start()
 		if PlayerData.buff_double_shield:
 			lost_shield_snd_player.play()
+			#play_effect(lost_shield_snd_player, effect_bus_to_use, false)
 			PlayerData.buff_double_shield = false
 			PlayerData.can_get_shield_boost = true
 			PlayerData.score -= 100
@@ -59,13 +68,11 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 
 		$shield.visible = false
 		lost_shield_snd_player.play()
-		
-		#yield(get_tree().create_timer(1), "timeout")
+		#play_effect(lost_shield_snd_player, effect_bus_to_use, false)
+
 		yield($HitTimer,"timeout")
 		has_shield = false
 		self.visible = true
-		
-	
 
 
 func _physics_process(_delta: float) -> void:
@@ -81,9 +88,16 @@ func _physics_process(_delta: float) -> void:
 		self.visible = not self.visible
 
 
+func _process(delta: float) -> void:
+	if PlayerData.level == 5 and self.position.y > 960:
+		effect_bus_to_use = "Echo"
+	if PlayerData.level == 5 and self.position.y < 960:
+		effect_bus_to_use = "Effects"
+		
 func get_direction() -> Vector2:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jmp_snd_player.play()
+		#jmp_snd_player.play()
+		play_effect(jmp_snd_player, effect_bus_to_use, false)
 		
 	return Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -157,33 +171,43 @@ func spawn_power_up() -> void:
 		match rng.randi_range(0, 2):
 			0:
 				if PlayerData.can_get_speed_boost:
-					PlayerData.can_get_speed_boost = false
 					node = get_node("../SpeedBoost")
-					powerup_snd.play()
-					node.position = self.position + Vector2(50, -200)
-					node.visible = true
-					node.get_node("AnimationPlayer").play("Appear")
-					yield(get_tree().create_timer(1), "timeout")
-					node.get_node("AnimationPlayer").play("bouncing")
+					if node:
+						#powerup_snd.play()
+						play_effect(powerup_snd, effect_bus_to_use, false)
+						node.position = self.position + Vector2(0, -10)
+						node.visible = true
+						node.get_node("AnimationPlayer").play("Appear")
+						yield(get_tree().create_timer(1), "timeout")
+						node.get_node("AnimationPlayer").play("bouncing")
 
 			1:
 				if PlayerData.can_get_jump_boost:
-					PlayerData.can_get_jump_boost = false
 					node = get_node("../JumpBoost")
-					powerup_snd.play()
-					node.position = self.position + Vector2(50, -200)
-					node.visible = true
-					node.get_node("AnimationPlayer").play("Appear")
-					yield(get_tree().create_timer(1), "timeout")
-					node.get_node("AnimationPlayer").play("bouncing")
+					if node:
+						#powerup_snd.play()
+						play_effect(powerup_snd, effect_bus_to_use, false)
+						node.position = self.position + Vector2(0, -10)
+						node.visible = true
+						node.get_node("AnimationPlayer").play("Appear")
+						yield(get_tree().create_timer(1), "timeout")
+						node.get_node("AnimationPlayer").play("bouncing")
 
 			2:
 				if PlayerData.can_get_shield_boost:
-					PlayerData.can_get_shield_boost = false
 					node = get_node("../ShieldBoost")
-					powerup_snd.play()
-					node.position = self.position + Vector2(50, -200)
-					node.visible = true
-					node.get_node("AnimationPlayer").play("Appear")
-					yield(get_tree().create_timer(1), "timeout")
-					node.get_node("AnimationPlayer").play("bouncing")
+					if node:
+						#powerup_snd.play()
+						play_effect(powerup_snd, effect_bus_to_use, false)
+						node.position = self.position + Vector2(0, -10)
+						node.visible = true
+						node.get_node("AnimationPlayer").play("Appear")
+						yield(get_tree().create_timer(1), "timeout")
+						node.get_node("AnimationPlayer").play("bouncing")
+
+
+func play_effect(stream: AudioStreamPlayer2D, effect_bus: String, should_yield: bool) -> void:
+	stream.bus = effect_bus
+	stream.play()
+	if should_yield:
+		yield(stream, "finished")
