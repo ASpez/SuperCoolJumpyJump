@@ -36,8 +36,6 @@ func _ready() -> void:
 
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
-	spawn_power_up()
-
 
 func _on_EnemyDetector_body_entered(_body: Node) -> void:
 	if PlayerData.option_god_mode:
@@ -161,13 +159,15 @@ func check_buffs() -> void:
 		$shield.modulate = Color("#ffffff")
 
 
-func spawn_power_up() -> void:
+func spawn_power_up(enemy_position: Vector2) -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	var rand = rng.randi_range(0, 100)
 	var node: Node
 	
+	PlayerData.total_hits += 1
 	if rand < powerup_bonus_chance:
+		PlayerData.total_crits += 1
 		match rng.randi_range(0, 2):
 			0:
 				if PlayerData.can_get_speed_boost:
@@ -175,7 +175,8 @@ func spawn_power_up() -> void:
 					if node:
 						#powerup_snd.play()
 						play_effect(powerup_snd, effect_bus_to_use, false)
-						node.position = self.position + Vector2(0, -10)
+						#node.position = self.position + Vector2(0, -10)
+						node.position = enemy_position + Vector2(0, -10)
 						node.visible = true
 						node.get_node("AnimationPlayer").play("Appear")
 						yield(get_tree().create_timer(1), "timeout")
@@ -187,7 +188,8 @@ func spawn_power_up() -> void:
 					if node:
 						#powerup_snd.play()
 						play_effect(powerup_snd, effect_bus_to_use, false)
-						node.position = self.position + Vector2(0, -10)
+						#node.position = self.position + Vector2(0, -10)
+						node.position = enemy_position + Vector2(0, -10)
 						node.visible = true
 						node.get_node("AnimationPlayer").play("Appear")
 						yield(get_tree().create_timer(1), "timeout")
@@ -199,7 +201,8 @@ func spawn_power_up() -> void:
 					if node:
 						#powerup_snd.play()
 						play_effect(powerup_snd, effect_bus_to_use, false)
-						node.position = self.position + Vector2(0, -10)
+						#node.position = self.position + Vector2(0, -10)
+						node.position = enemy_position + Vector2(0, -10)
 						node.visible = true
 						node.get_node("AnimationPlayer").play("Appear")
 						yield(get_tree().create_timer(1), "timeout")

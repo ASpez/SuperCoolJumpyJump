@@ -53,7 +53,9 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -350 ), Vector2( 0, -60 ) ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"EnemyDeath",
+]]
 collision_mask = 8
 script = ExtResource( 2 )
 speed = Vector2( 500, 1400 )

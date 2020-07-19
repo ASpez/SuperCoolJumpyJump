@@ -1,6 +1,9 @@
 extends Node
 
 
+var total_hits: int = 0
+var total_crits: int = 0
+
 signal score_updated
 signal player_died
 signal level_updated
@@ -29,7 +32,7 @@ var sfx_off_button_status: bool = false
 
 var config = ConfigFile.new()
 
-const VERSION = "v0.0.47"
+const VERSION = "v0.0.48"
 const CFG_FILE = "user://settings.cfg"
 
 

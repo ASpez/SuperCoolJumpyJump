@@ -1,6 +1,7 @@
 extends Control
 
 
+
 onready var scene_tree: = get_tree()
 onready var pause_overlay: ColorRect = get_node("PauseOverlay")
 onready var score: Label = get_node("Score")
@@ -9,7 +10,6 @@ onready var pause_title: Label = get_node("PauseOverlay/Title")
 onready var bus_music: = AudioServer.get_bus_index("Music")
 onready var bus_effects: = AudioServer.get_bus_index("Effects")
 onready var bus_master: = AudioServer.get_bus_index("Master")
-
 
 var paused: = false setget set_paused
 var busdb_music

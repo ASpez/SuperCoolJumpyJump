@@ -1,6 +1,7 @@
 extends "res://src/Actors/Actor.gd"
 
 
+
 onready var snd_player: AudioStreamPlayer2D = $EnemyDeathSound
 export var score: = 100
 
@@ -47,7 +48,9 @@ func die() -> void:
 		$Particles2D.emitting = true
 	
 	PlayerData.score += self.score
+	get_tree().call_group_flags(2, "EnemyDeath", "spawn_power_up", self.position)
 	snd_player.play()
 	yield(snd_player,"finished")
 	yield(get_tree().create_timer(.75), "timeout")
+	
 	queue_free()

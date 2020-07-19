@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -12,10 +12,8 @@
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/Levels/Level06.gd" type="Script" id=13]
 
 [node name="Level06" type="Node2D"]
-script = ExtResource( 13 )
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 101

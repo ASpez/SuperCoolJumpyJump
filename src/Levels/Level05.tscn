@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -15,10 +15,8 @@
 [ext_resource path="res://assets/background/parallax-mountain-montain-far.png" type="Texture" id=13]
 [ext_resource path="res://assets/background/parallax-mountain-foreground-trees.png" type="Texture" id=14]
 [ext_resource path="res://assets/background/parallax-mountain-bg.png" type="Texture" id=15]
-[ext_resource path="res://src/Levels/Level05.gd" type="Script" id=16]
 
 [node name="Level05" type="Node2D"]
-script = ExtResource( 16 )
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 101
@@ -362,17 +360,5 @@ visible = false
 
 [node name="ShieldBoost" parent="." instance=ExtResource( 12 )]
 visible = false
-
-[node name="EnterCave" type="RayCast2D" parent="."]
-position = Vector2( 67.5455, 853.291 )
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, 9300 )
-
-[node name="ExitCave" type="RayCast2D" parent="."]
-position = Vector2( 9698.44, 737.582 )
-rotation = -4.71239
-enabled = true
-cast_to = Vector2( 0, 1500 )
 
 [editable path="Player"]

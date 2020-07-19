@@ -31,7 +31,7 @@ layer = -1
 scroll_base_scale = Vector2( 0.3, 1 )
 
 [node name="PBHill" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
-motion_scale = Vector2( 0.1, 1 )
+motion_scale = Vector2( 0.3, 1 )
 motion_mirroring = Vector2( 1920, 0 )
 
 [node name="Hill" type="Sprite" parent="CanvasLayer/PBackground/PBHill"]
