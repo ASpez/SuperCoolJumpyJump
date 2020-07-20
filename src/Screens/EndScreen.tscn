@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/background.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/Screens/EndScreen.gd" type="Script" id=5]
-[ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Ending.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Ending.ogg" type="AudioStream" id=6]
 [ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/5starParticle.png" type="Texture" id=8]
 [ext_resource path="res://assets/HeartParticle.png" type="Texture" id=9]

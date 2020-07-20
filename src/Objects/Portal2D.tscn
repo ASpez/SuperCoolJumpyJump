@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/portal.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/Portal2D.gd" type="Script" id=2]
-[ext_resource path="res://assets/sfx/portal.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/portal.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/Particle.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]

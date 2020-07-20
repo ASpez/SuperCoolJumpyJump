@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/buff_jump_boost.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/JumpBoost.gd" type="Script" id=2]
-[ext_resource path="res://assets/sfx/coin1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/coin1.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 34.2345

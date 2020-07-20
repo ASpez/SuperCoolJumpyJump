@@ -5,7 +5,7 @@
 [ext_resource path="res://src/UserInterface/QuitButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/background.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=5]
-[ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Title Screen.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Title Screen.ogg" type="AudioStream" id=6]
 [ext_resource path="res://src/Screens/MainScreen.gd" type="Script" id=7]
 [ext_resource path="res://src/UserInterface/InfoButton.gd" type="Script" id=8]
 [ext_resource path="res://assets/flare_01_0.png" type="Texture" id=9]
