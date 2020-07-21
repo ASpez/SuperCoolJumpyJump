@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/enemy.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Boss.gd" type="Script" id=2]
@@ -48,6 +48,22 @@ tracks/0/keys = {
 "values": [ Vector2( 3.5, 3.5 ), Vector2( 0.1, 0.1 ) ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boss:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Boss" type="KinematicBody2D" groups=[
 "Boss",
 ]]
@@ -58,6 +74,7 @@ collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="Boss" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, -48 )
 texture = ExtResource( 1 )
 
@@ -115,5 +132,8 @@ one_shot = true
 process_mode = 0
 wait_time = 2.0
 one_shot = true
+
+[node name="StartFight" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 7 )
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_BossTimer_timeout"]

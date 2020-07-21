@@ -194,40 +194,40 @@ func _on_SettingsButton_button_up() -> void:
 
 
 func _on_MusicOnButton_mouse_entered() -> void:
-	$MusicOnButton.modulate = Color("#8d98b2")
+	$MusicOnButton.modulate = Color("#ffffff")
 	
 
 func _on_MusicOnButton_mouse_exited() -> void:
-	$MusicOnButton.modulate = Color("#648d98b2")
+	$MusicOnButton.modulate = Color("#64ffffff")
 
 
 func _on_MusicOffButton_mouse_entered() -> void:
-	$MusicOffButton.modulate = Color("#8d98b2")
+	$MusicOffButton.modulate = Color("#ffffff")
 
 
 func _on_MusicOffButton_mouse_exited() -> void:
-	$MusicOffButton.modulate = Color("#648d98b2")
+	$MusicOffButton.modulate = Color("#64ffffff")
 
 
 func _on_SFXOnButton_mouse_entered() -> void:
-	$SFXOnButton.modulate = Color("#8d98b2")
+	$SFXOnButton.modulate = Color("#ffffff")
 
 
 func _on_SFXOffButton_mouse_entered() -> void:
-	$SFXOffButton.modulate = Color("#8d98b2")
+	$SFXOffButton.modulate = Color("#ffffff")
 
 
 func _on_SFXOnButton_mouse_exited() -> void:
-	$SFXOnButton.modulate = Color("#648d98b2")
+	$SFXOnButton.modulate = Color("#64ffffff")
 
 
 func _on_SFXOffButton_mouse_exited() -> void:
-	$SFXOffButton.modulate = Color("#648d98b2")
+	$SFXOffButton.modulate = Color("#64ffffff")
 
 
 func _on_SettingsButton_mouse_entered() -> void:
-	$SettingsButton.modulate = Color("#8d98b2")
+	$SettingsButton.modulate = Color("#ffffff")
 
 
 func _on_SettingsButton_mouse_exited() -> void:
-	$SettingsButton.modulate = Color("#648d98b2")
+	$SettingsButton.modulate = Color("#64ffffff")

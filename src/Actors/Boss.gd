@@ -105,5 +105,5 @@ func _on_BossTimer_timeout() -> void:
 				y_direction = -1
 				yield(get_tree().create_timer(.02), "timeout")
 				y_direction = 0
-			$BossTimer.start(rng.randf_range(.5, 5.0))
-			
+			$BossTimer.start(rng.randf_range(.5, 5.0 - float(((1+hit_points) / 2))))
+		

@@ -1,18 +1,20 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/background/parallax-forest-back-trees.png" type="Texture" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/Portal2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/Level02.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/music/Juhani Junkala [Retro Game Music Pack] Level 1.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/background/parallax-forest-lights.png" type="Texture" id=10]
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/background/country-platform-back.png" type="Texture" id=14]
-[ext_resource path="res://assets/background/country-platform-forest.png" type="Texture" id=15]
+[ext_resource path="res://assets/background/parallax-forest-middle-trees.png" type="Texture" id=16]
+[ext_resource path="res://assets/background/parallax-forest-front-trees.png" type="Texture" id=17]
 
 [node name="Level01" type="Node2D"]
 __meta__ = {
@@ -23,32 +25,6 @@ __meta__ = {
 layer = 101
 
 [node name="UserInterface" parent="UserInterface" instance=ExtResource( 8 )]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="PBackground" type="ParallaxBackground" parent="CanvasLayer"]
-scroll_base_scale = Vector2( 0.3, 1 )
-
-[node name="PBHill" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
-motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 1920, 0 )
-
-[node name="Hill" type="Sprite" parent="CanvasLayer/PBackground/PBHill"]
-scale = Vector2( 5, 4.80357 )
-texture = ExtResource( 14 )
-centered = false
-
-[node name="PBForest" type="ParallaxLayer" parent="CanvasLayer/PBackground"]
-motion_scale = Vector2( 0.5, 1 )
-motion_offset = Vector2( 1920, 0 )
-motion_mirroring = Vector2( 1920, 0 )
-
-[node name="Forest" type="Sprite" parent="CanvasLayer/PBackground/PBForest"]
-position = Vector2( 0, 698 )
-scale = Vector2( 11.9994, 1 )
-texture = ExtResource( 15 )
-centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -4, 280 )
@@ -185,5 +161,53 @@ position = Vector2( 0, 0 )
 [node name="ShieldBoost" parent="." instance=ExtResource( 13 )]
 visible = false
 position = Vector2( 0, 0 )
+
+[node name="BackTrees" type="ParallaxBackground" parent="."]
+layer = -6
+scroll_base_scale = Vector2( 0.3, 1 )
+
+[node name="BackTreesLayer" type="ParallaxLayer" parent="BackTrees"]
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="BackTreesSprite" type="Sprite" parent="BackTrees/BackTreesLayer"]
+scale = Vector2( 7.05936, 6.74689 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ForestLights" type="ParallaxBackground" parent="."]
+layer = -5
+scroll_base_scale = Vector2( 0.4, 1 )
+
+[node name="ForestLightsLayer" type="ParallaxLayer" parent="ForestLights"]
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="ForestLightsSprite" type="Sprite" parent="ForestLights/ForestLightsLayer"]
+scale = Vector2( 7.05936, 6.74689 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="MiddleTrees" type="ParallaxBackground" parent="."]
+layer = -4
+scroll_base_scale = Vector2( 0.5, 1 )
+
+[node name="MiddleTreesLayer" type="ParallaxLayer" parent="MiddleTrees"]
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="MiddleTreesSprite" type="Sprite" parent="MiddleTrees/MiddleTreesLayer"]
+scale = Vector2( 7.05936, 6.74689 )
+texture = ExtResource( 16 )
+centered = false
+
+[node name="FrontTrees" type="ParallaxBackground" parent="."]
+layer = -3
+scroll_base_scale = Vector2( 0.8, 1 )
+
+[node name="FrontTreesLayer" type="ParallaxLayer" parent="FrontTrees"]
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="FrontTreesSprite" type="Sprite" parent="FrontTrees/FrontTreesLayer"]
+scale = Vector2( 7.05936, 6.74689 )
+texture = ExtResource( 17 )
+centered = false
 
 [editable path="Player"]

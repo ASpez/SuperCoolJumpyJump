@@ -52,7 +52,7 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		yield(player_died_anim, "animation_finished")
 		die()
 	
-	if has_shield == true:
+	if has_shield == true and is_teleporting == false:
 		$HitTimer.start()
 		if PlayerData.buff_double_shield:
 			lost_shield_snd_player.play()
@@ -87,10 +87,17 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	if PlayerData.level == 5 and self.position.y > 960:
-		effect_bus_to_use = "Echo"
-	if PlayerData.level == 5 and self.position.y < 960:
-		effect_bus_to_use = "Effects"
+	match PlayerData.level:
+		2, 5:
+			if self.position.y > 960:
+				effect_bus_to_use = "Echo"
+			if self.position.y < 960:
+				effect_bus_to_use = "Effects"
+				
+	#if PlayerData.level == 5 and self.position.y > 960:
+	#	effect_bus_to_use = "Echo"
+	#if PlayerData.level == 5 and self.position.y < 960:
+	#	effect_bus_to_use = "Effects"
 		
 func get_direction() -> Vector2:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -176,7 +183,7 @@ func spawn_power_up(enemy_position: Vector2) -> void:
 						#powerup_snd.play()
 						play_effect(powerup_snd, effect_bus_to_use, false)
 						#node.position = self.position + Vector2(0, -10)
-						node.position = enemy_position + Vector2(0, -10)
+						node.position = enemy_position + Vector2(0, -50)
 						node.visible = true
 						node.get_node("AnimationPlayer").play("Appear")
 						yield(get_tree().create_timer(1), "timeout")
@@ -189,7 +196,7 @@ func spawn_power_up(enemy_position: Vector2) -> void:
 						#powerup_snd.play()
 						play_effect(powerup_snd, effect_bus_to_use, false)
 						#node.position = self.position + Vector2(0, -10)
-						node.position = enemy_position + Vector2(0, -10)
+						node.position = enemy_position + Vector2(0, -50)
 						node.visible = true
 						node.get_node("AnimationPlayer").play("Appear")
 						yield(get_tree().create_timer(1), "timeout")
@@ -202,7 +209,7 @@ func spawn_power_up(enemy_position: Vector2) -> void:
 						#powerup_snd.play()
 						play_effect(powerup_snd, effect_bus_to_use, false)
 						#node.position = self.position + Vector2(0, -10)
-						node.position = enemy_position + Vector2(0, -10)
+						node.position = enemy_position + Vector2(0, -50)
 						node.visible = true
 						node.get_node("AnimationPlayer").play("Appear")
 						yield(get_tree().create_timer(1), "timeout")
