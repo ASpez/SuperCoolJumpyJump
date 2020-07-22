@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	if not start_boss_fight:
 		if $BossFight.is_colliding():
 			start_boss_fight = true
-			yield(get_tree().create_timer(.02), "timeout")
+			yield(get_tree().create_timer(.01), "timeout")
 			get_tree().call_group_flags(2, "frame_freeze", "freeze")
 			#var org_pos: Vector2 = $BossFightCamera.position
 			var org_pos: Vector2 = Vector2(9744.0, 158.0)
