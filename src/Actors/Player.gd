@@ -12,6 +12,7 @@ onready var bus_echo = AudioServer.get_bus_index("Echo")
 
 export var stomp_impulse: = 1500.0
 
+
 var is_dying: bool = false
 var has_shield: bool = false
 var is_teleporting = false
@@ -36,14 +37,16 @@ func _ready() -> void:
 
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+	$Camera2D/SceenShake.start(0.2, 15, 5, 0)
 
 func _on_EnemyDetector_body_entered(_body: Node) -> void:
 	if PlayerData.option_god_mode:
 		return
-		
+	if is_teleporting:
+		return
 	if $HitTimer.is_stopped() == false:
 		return
-	if is_dying == false and is_teleporting == false and has_shield == false:
+	if is_dying == false and has_shield == false:
 		is_dying = true
 		player_died_anim.play("Zoom")
 		#play_effect(snd_player, effect_bus_to_use, true)
@@ -52,7 +55,8 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		yield(player_died_anim, "animation_finished")
 		die()
 	
-	if has_shield == true and is_teleporting == false:
+	if has_shield == true:
+		$Camera2D/SceenShake.start(0.4, 15, 25, 1)
 		$HitTimer.start()
 		if PlayerData.buff_double_shield:
 			lost_shield_snd_player.play()
@@ -221,3 +225,6 @@ func play_effect(stream: AudioStreamPlayer2D, effect_bus: String, should_yield: 
 	stream.play()
 	if should_yield:
 		yield(stream, "finished")
+
+func freeze() -> void:
+	set_physics_process(not is_physics_processing())

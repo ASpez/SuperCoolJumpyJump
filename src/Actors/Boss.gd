@@ -12,6 +12,14 @@ onready var start_boss_fight = false
 var y_direction = 0.0
 
 signal dead
+signal hit(hit_points)
+
+
+func _enter_tree():
+	var shake_tween = Tween.new()
+	shake_tween.name = "TweenShake"
+	add_child(shake_tween)    
+	shake_tween.connect("tween_completed", self, "on_tween_completed")
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -36,6 +44,7 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 		$StompDetector.set_collision_layer_bit(1, false)
 		$HitTimer.start()
 		hit_points += 1
+		emit_signal("hit", hit_points)
 		$BossHit.play()
 		yield($HitTimer, "timeout")
 		$StompDetector.set_deferred("monitorable", true)
@@ -50,6 +59,7 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 			set_collision_mask_bit(0, false)
 			set_collision_layer_bit(1, false)
 			$StompDetector.set_collision_layer_bit(1, false)
+			emit_signal("dead")
 			die()
 	
 
@@ -87,7 +97,6 @@ func die() -> void:
 	$DeathAnimation.play("Death")
 	yield(get_tree().create_timer(.55), "timeout")
 	get_tree().call_group("EnemyDeath", "spawn_power_up")
-	emit_signal("dead")
 	$BossTimer.stop()
 	queue_free()
 
@@ -106,4 +115,4 @@ func _on_BossTimer_timeout() -> void:
 				yield(get_tree().create_timer(.02), "timeout")
 				y_direction = 0
 			$BossTimer.start(rng.randf_range(.5, 5.0 - float(((1+hit_points) / 2))))
-		
+
