@@ -16,6 +16,7 @@ var option_god_mode: bool
 var option_enable_shields: bool
 var option_enable_audio: bool
 var option_enable_particles: bool
+var option_enamble_camera_shake: bool
 
 var buff_double_shield: bool = false
 var buff_speed_boost: bool = false
@@ -32,7 +33,7 @@ var sfx_off_button_status: bool = false
 
 var config = ConfigFile.new()
 
-const VERSION = "v0.1.00"
+const VERSION = "v0.1.02"
 const CFG_FILE = "user://settings.cfg"
 
 

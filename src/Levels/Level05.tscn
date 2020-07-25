@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -15,8 +15,10 @@
 [ext_resource path="res://assets/background/parallax-mountain-montain-far.png" type="Texture" id=13]
 [ext_resource path="res://assets/background/parallax-mountain-foreground-trees.png" type="Texture" id=14]
 [ext_resource path="res://assets/background/parallax-mountain-bg.png" type="Texture" id=15]
+[ext_resource path="res://src/Levels/Level05.gd" type="Script" id=16]
 
 [node name="Level05" type="Node2D"]
+script = ExtResource( 16 )
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 101
@@ -68,7 +70,9 @@ scale = Vector2( 0.48, 0.388 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"tilemap",
+]]
 position = Vector2( -3, 282 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 80, 80 )

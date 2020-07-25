@@ -67,7 +67,9 @@ scale = Vector2( 3.52736, 2.86877 )
 texture = ExtResource( 17 )
 centered = false
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"tilemap",
+]]
 position = Vector2( -3, 280 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 80, 80 )

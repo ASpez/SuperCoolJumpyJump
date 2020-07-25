@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -13,20 +13,21 @@
 [ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Levels/Level01.gd" type="Script" id=14]
 [ext_resource path="res://assets/background/parallax-forest-middle-trees.png" type="Texture" id=16]
 [ext_resource path="res://assets/background/parallax-forest-front-trees.png" type="Texture" id=17]
 
 [node name="Level01" type="Node2D"]
-__meta__ = {
-"_edit_vertical_guides_": [ 10071.0 ]
-}
+script = ExtResource( 14 )
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 layer = 101
 
 [node name="UserInterface" parent="UserInterface" instance=ExtResource( 8 )]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"tilemap",
+]]
 position = Vector2( -4, 280 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 80, 80 )

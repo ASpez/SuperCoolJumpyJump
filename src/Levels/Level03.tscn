@@ -29,7 +29,9 @@ layer = 101
 
 [node name="UserInterface" parent="UserInterface" instance=ExtResource( 6 )]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=[
+"tilemap",
+]]
 position = Vector2( -3, 280 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 80, 80 )

@@ -36,10 +36,16 @@ func _ready() -> void:
 
 
 func _on_EnemyDetector_area_entered(_area: Area2D) -> void:
-	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
-	$Camera2D/SceenShake.start(0.2, 15, 5, 0)
+	if _area.name == "BumperStompDetector":
+		_velocity = calculate_stomp_velocity(_velocity, stomp_impulse + 800)
+	else:
+		_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+
+	#$Camera2D/SceenShake.start(0.2, 15, 5, 0)
 
 func _on_EnemyDetector_body_entered(_body: Node) -> void:
+	if _body.is_in_group("bumpers"):
+		return
 	if PlayerData.option_god_mode:
 		return
 	if is_teleporting:
@@ -48,11 +54,7 @@ func _on_EnemyDetector_body_entered(_body: Node) -> void:
 		return
 	if is_dying == false and has_shield == false:
 		is_dying = true
-		player_died_anim.play("Zoom")
-		#play_effect(snd_player, effect_bus_to_use, true)
-		snd_player.play()
-		yield(snd_player, "finished")
-		yield(player_died_anim, "animation_finished")
+		
 		die()
 	
 	if has_shield == true:
@@ -137,9 +139,17 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 
 
 func die() -> void:
+	player_died_anim.play("Zoom")
+	#play_effect(snd_player, effect_bus_to_use, true)
+	snd_player.play()
+	yield(snd_player, "finished")
+	yield(player_died_anim, "animation_finished")
+	
+	reset_buffs()
+	
 	if PlayerData.deaths < 99:
 		PlayerData.deaths += 1
-	reset_buffs()
+
 	#queue_free()
 
 
