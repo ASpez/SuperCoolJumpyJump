@@ -56,24 +56,10 @@ next_scene = ExtResource( 7 )
 [node name="Coin" parent="Coins" instance=ExtResource( 5 )]
 position = Vector2( 476, 653 )
 
-[node name="Coin2" parent="Coins" instance=ExtResource( 5 )]
-position = Vector2( 1721, 782 )
-
-[node name="Coin3" parent="Coins" instance=ExtResource( 5 )]
-position = Vector2( 2673, 703 )
-
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 3 )]
 position = Vector2( 2625, 440 )
-speed = Vector2( 250, 1000 )
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 882, 840 )
-speed = Vector2( 250, 1000 )
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 1496, 840 )
 speed = Vector2( 250, 1000 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

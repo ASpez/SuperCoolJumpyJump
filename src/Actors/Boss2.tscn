@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/enemy.png" type="Texture" id=1]
-[ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://src/Actors/Boss2.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/enemy_death.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/boss_hit.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/cannon_03.ogg" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 43, 35 )
@@ -27,13 +29,15 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 39.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 1.5
+scale_random = 0.5
 color_ramp = SubResource( 4 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Death"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("enemy:scale")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,23 +46,36 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ) ]
+"values": [ Vector2( 3.5, 3.5 ), Vector2( 0.1, 0.1 ) ]
 }
 
-[node name="Enemy" type="KinematicBody2D"]
+[sub_resource type="Animation" id=7]
+resource_name = "fade_in"
+length = 2.0
+
+[node name="Boss2" type="KinematicBody2D" groups=[
+"Boss",
+"Boss2",
+]]
+show_behind_parent = true
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 2 )
 
-[node name="enemy" type="Sprite" parent="."]
+[node name="Boss2" type="Sprite" parent="."]
 position = Vector2( 0, -48 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -36.4704 )
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( 0, -16.5 )
 scale = Vector2( 1, 1.55 )
 rect = Rect2( -50, -50, 100, 60 )
@@ -66,6 +83,7 @@ process_parent = true
 physics_process_parent = true
 
 [node name="StompDetector" type="Area2D" parent="."]
+visible = false
 modulate = Color( 0.0352941, 0.262745, 0.952941, 1 )
 position = Vector2( 0, -71 )
 collision_layer = 2
@@ -82,16 +100,35 @@ bus = "Effects"
 visible = false
 position = Vector2( 0, -44 )
 emitting = false
-amount = 1000
-lifetime = 0.75
+amount = 5000
+lifetime = 2.0
 one_shot = true
 speed_scale = 1.2
-explosiveness = 0.97
+explosiveness = 0.8
 process_material = SubResource( 5 )
 
 [node name="DeathAnimation" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 6 )
 
-[node name="HitTimer" type="Timer" parent="."]
+[node name="BossHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "Effects"
+
+[node name="BossTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 4.0
 one_shot = true
+
+[node name="HitTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="StartFight" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 7 )
+
+[node name="BossBuddySpawner" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+bus = "Effects"
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_BossTimer_timeout"]

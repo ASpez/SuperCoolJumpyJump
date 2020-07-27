@@ -14,8 +14,8 @@ export var stomp_impulse: = 1500.0
 
 
 var is_dying: bool = false
-var has_shield: bool = false
 var is_teleporting = false
+var has_shield: bool = false
 
 var effect_bus_to_use = "Effects"
 
@@ -229,7 +229,6 @@ func spawn_power_up(enemy_position: Vector2) -> void:
 						yield(get_tree().create_timer(1), "timeout")
 						node.get_node("AnimationPlayer").play("bouncing")
 
-
 func play_effect(stream: AudioStreamPlayer2D, effect_bus: String, should_yield: bool) -> void:
 	stream.bus = effect_bus
 	stream.play()
@@ -238,3 +237,21 @@ func play_effect(stream: AudioStreamPlayer2D, effect_bus: String, should_yield: 
 
 func freeze() -> void:
 	set_physics_process(not is_physics_processing())
+
+func _on_Boss2_hit(times_hit) -> void:
+	var duration = min(0.2 * times_hit, 1.5)
+	var frequency = 15 + (times_hit * 1.75)
+	var amplitude = min(20 + (times_hit * 2), 32)
+	var priority = 3
+	var string = "times hit: " + String(times_hit) + " duration: " + String(duration)
+	string += " frequency: " + String(frequency) + " amplitude: " + String(amplitude)
+	print_debug(string)
+	$Camera2D/SceenShake.start(duration, frequency, amplitude, priority)
+
+func level_8_boss_drop_enter() -> void:
+	pass
+
+
+
+
+
