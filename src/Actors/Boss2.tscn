@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/enemy.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Boss2.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/enemy_death.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/sfx/boss_hit.ogg" type="AudioStream" id=4]
-[ext_resource path="res://assets/sfx/cannon_03.ogg" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 43, 35 )
@@ -126,9 +125,5 @@ one_shot = true
 
 [node name="StartFight" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 7 )
-
-[node name="BossBuddySpawner" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
-bus = "Effects"
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_BossTimer_timeout"]

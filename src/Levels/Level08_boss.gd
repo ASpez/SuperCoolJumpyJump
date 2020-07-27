@@ -27,6 +27,7 @@ func _on_Boss2_spawn(spawn_number, boss_position) -> void:
 			rand1.x *= -1
 		var spawn = boss_buddy_scene.instance()
 		add_child(spawn, true)
+		$BossBuddySpawnSound.play()
 		var sp = spawn.find_node("BossBuddySprite")
 		arry.append(Tween.new())
 		add_child(arry[i])
