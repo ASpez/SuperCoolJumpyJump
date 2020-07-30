@@ -13,7 +13,7 @@ found that look good as well
 * https://www.davidepesce.com/godot-tutorials/
 * [Official Godot tutorial](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_game.html)
 * [This](http://kidscancode.org/godot_recipes/) and [this](http://kidscancode.org/blog/tags/godot/) from kidscancode
-* [Link of tutorials from Godot] (https://docs.godotengine.org/en/stable/community/tutorials.html)
+* [Link of tutorials from Godot](https://docs.godotengine.org/en/stable/community/tutorials.html)
 * Plus many many more available through the template tab in the engines launcher
   
 # Things to work on
