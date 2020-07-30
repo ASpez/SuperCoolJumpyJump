@@ -79,7 +79,7 @@ tracks/0/keys = {
 
 [node name="SpeedBoost" type="Area2D"]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 10 )
+position = Vector2( 0, -500 )
 scale = Vector2( 2.5, 3.5 )
 collision_layer = 4
 script = ExtResource( 2 )

@@ -72,6 +72,7 @@ func _on_StompDetector_body_entered(body: Node) -> void:
 		#boss_buddy_spawner((1*times_hit)/2)
 		emit_signal("spawn", times_hit / 2, self.position)
 		is_invicible = true
+		modulate = Color("#80ffffff")
 		self.scale += Vector2(.5, .5)
 
 func _process(delta: float) -> void:
@@ -97,6 +98,7 @@ func _physics_process(delta: float) -> void:
 			
 		if not are_boss_buddies_alive():
 			is_invicible = false
+			modulate = Color("#ffffff")
 
 
 func die() -> void:

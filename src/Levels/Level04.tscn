@@ -247,12 +247,15 @@ bus = "Music"
 
 [node name="SpeedBoost" parent="." instance=ExtResource( 12 )]
 visible = false
+position = Vector2( 0, -500 )
 
 [node name="JumpBoost" parent="." instance=ExtResource( 13 )]
 visible = false
+position = Vector2( 0, -500 )
 
 [node name="ShieldBoost" parent="." instance=ExtResource( 14 )]
 visible = false
+position = Vector2( 0, -500 )
 
 [node name="BossFight" type="RayCast2D" parent="."]
 position = Vector2( 9189.01, 602.118 )

@@ -10,7 +10,7 @@ onready var lost_shield_snd_player: AudioStreamPlayer2D = $LostShieldSound
 onready var bus_effects = AudioServer.get_bus_index("Effects")
 onready var bus_echo = AudioServer.get_bus_index("Echo")
 
-export var stomp_impulse: = 1500.0
+export (float) var stomp_impulse: = 1500.0
 
 
 var is_dying: bool = false

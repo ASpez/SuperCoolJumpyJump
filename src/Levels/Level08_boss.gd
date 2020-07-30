@@ -1,7 +1,7 @@
 extends Node2D
 
 var vol: float = 0.0
-var swap: bool = false
+var swap: bool = true
 var boss_buddy_scene = preload("res://src/Actors/BossBuddy.tscn")
 
 onready var tween_out = get_node("MusicTween")

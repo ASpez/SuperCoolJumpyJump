@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/background/industrial_foreground.png" type="Texture" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/UserInterface/UserInterface.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Levels/Level08_boss.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=8]
+[ext_resource path="res://src/Objects/SpeedBoost.gd" type="Script" id=9]
 [ext_resource path="res://assets/down_arrow.png" type="Texture" id=10]
 [ext_resource path="res://assets/background/industrial_buildings.png" type="Texture" id=11]
 [ext_resource path="res://src/Objects/Bumper.tscn" type="PackedScene" id=12]
@@ -15,6 +16,11 @@
 [ext_resource path="res://assets/background/industrial_background.png" type="Texture" id=14]
 [ext_resource path="res://assets/background/industrial_far-buildings.png" type="Texture" id=15]
 [ext_resource path="res://src/Levels/DeathPitDetector.gd" type="Script" id=16]
+[ext_resource path="res://src/Objects/JumpBoost.gd" type="Script" id=17]
+[ext_resource path="res://src/Objects/ShieldBoost.gd" type="Script" id=18]
+[ext_resource path="res://src/Objects/JumpBoost.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/Objects/ShieldBoost.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/Objects/SpeedBoost.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "arrow_bounce"
@@ -230,5 +236,32 @@ script = ExtResource( 16 )
 [node name="DownArrowAnimation" type="AnimationPlayer" parent="."]
 autoplay = "arrow_bounce"
 anims/arrow_bounce = SubResource( 1 )
+
+[node name="SpeedBoost" type="Area2D" parent="." instance=ExtResource( 21 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -500 )
+scale = Vector2( 2.5, 3.5 )
+collision_layer = 4
+script = ExtResource( 9 )
+
+[node name="JumpBoost" type="Area2D" parent="." instance=ExtResource( 19 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -500 )
+scale = Vector2( 2.8, 4 )
+collision_layer = 4
+script = ExtResource( 17 )
+
+[node name="ShieldBoost" type="Area2D" parent="." instance=ExtResource( 20 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -500 )
+scale = Vector2( 2.8, 4 )
+collision_layer = 4
+script = ExtResource( 18 )
+[connection signal="body_entered" from="SpeedBoost" to="SpeedBoost" method="_on_body_entered"]
+[connection signal="body_entered" from="JumpBoost" to="JumpBoost" method="_on_body_entered"]
+[connection signal="body_entered" from="ShieldBoost" to="ShieldBoost" method="_on_body_entered"]
 
 [editable path="Player"]

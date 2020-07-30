@@ -33,7 +33,7 @@ var sfx_off_button_status: bool = false
 
 var config = ConfigFile.new()
 
-const VERSION = "v0.1.03"
+const VERSION = "v0.1.05"
 const CFG_FILE = "user://settings.cfg"
 
 
